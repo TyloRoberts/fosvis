@@ -1,0 +1,14 @@
+contigs: /mnt/nfs/sharknado/Sandbox/Tylo/circos_outputs_and_sample_data/sample_data/random_fosmids.fasta
+output_dir: /mnt/nfs/sharknado/Sandbox/Tylo/circos_outputs_and_sample_data
+project_title: random_14_repeat_21
+hmm_db: /mnt/nfs/sharknado/Sandbox/Tylo/databases/hmmer/hmmscan/Pfam-A.hmm
+e_value: 0.0001
+min_contig_length: 10000
+min_blast_similarity_percentage: 80
+min_blast_similarity_length: 200
+link_transperacny: 0.60
+percent_link_overlap_tolerance: 50
+include_domains: False
+gc: True
+gc_interval_len: 100
+blast_type: blastn

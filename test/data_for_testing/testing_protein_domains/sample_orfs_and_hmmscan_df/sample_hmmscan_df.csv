@@ -1,0 +1,305 @@
+target,orf_id,orf_start,orf_stop,target_description
+adh_short_C2,NODE_1_length_44035_cov_6.029743_1,20,169,Enoyl-(Acyl carrier protein) reductase
+adh_short,NODE_1_length_44035_cov_6.029743_1,12,115,short chain dehydrogenase
+AlaDh_PNT_C,NODE_1_length_44035_cov_6.029743_2,78,289,"Alanine dehydrogenase/PNT, C-terminal domain"
+AlaDh_PNT_N,NODE_1_length_44035_cov_6.029743_2,2,74,"Alanine dehydrogenase/PNT, N-terminal domain"
+2-Hacid_dh_C,NODE_1_length_44035_cov_6.029743_2,40,59,"D-isomer specific 2-hydroxyacid dehydrogenase, NAD binding domain"
+2-Hacid_dh_C,NODE_1_length_44035_cov_6.029743_2,108,205,"D-isomer specific 2-hydroxyacid dehydrogenase, NAD binding domain"
+2-Hacid_dh_C,NODE_1_length_44035_cov_6.029743_2,273,292,"D-isomer specific 2-hydroxyacid dehydrogenase, NAD binding domain"
+Shikimate_DH,NODE_1_length_44035_cov_6.029743_2,107,206,Shikimate / quinate 5-dehydrogenase
+Pyr_redox,NODE_1_length_44035_cov_6.029743_2,107,145,Pyridine nucleotide-disulphide oxidoreductase
+3HCDH_N,NODE_1_length_44035_cov_6.029743_2,108,152,"3-hydroxyacyl-CoA dehydrogenase, NAD binding domain"
+THF_DHG_CYH_C,NODE_1_length_44035_cov_6.029743_2,151,209,"Tetrahydrofolate dehydrogenase/cyclohydrolase, NAD(P)-binding domain"
+DUF1345,NODE_1_length_44035_cov_6.029743_3,37,204,Protein of unknown function (DUF1345)
+TauD,NODE_1_length_44035_cov_6.029743_4,8,266,"Taurine catabolism dioxygenase TauD, TfdA family"
+MatE,NODE_1_length_44035_cov_6.029743_6,28,186,MatE
+MatE,NODE_1_length_44035_cov_6.029743_6,252,412,MatE
+Polysacc_synt_C,NODE_1_length_44035_cov_6.029743_6,58,75,Polysaccharide biosynthesis C-terminal domain
+Polysacc_synt_C,NODE_1_length_44035_cov_6.029743_6,140,221,Polysaccharide biosynthesis C-terminal domain
+Polysacc_synt_C,NODE_1_length_44035_cov_6.029743_6,358,447,Polysaccharide biosynthesis C-terminal domain
+AMP-binding,NODE_1_length_44035_cov_6.029743_7,26,438,AMP-binding enzyme
+AMP-binding_C,NODE_1_length_44035_cov_6.029743_7,123,147,AMP-binding enzyme C-terminal domain
+AMP-binding_C,NODE_1_length_44035_cov_6.029743_7,447,525,AMP-binding enzyme C-terminal domain
+GYD,NODE_1_length_44035_cov_6.029743_8,4,90,GYD domain
+Beta-lactamase,NODE_1_length_44035_cov_6.029743_9,16,380,Beta-lactamase
+Sortilin-Vps10,NODE_1_length_44035_cov_6.029743_11,64,140,"Sortilin, neurotensin receptor 3,"
+Sortilin-Vps10,NODE_1_length_44035_cov_6.029743_11,184,306,"Sortilin, neurotensin receptor 3,"
+Sortilin-Vps10,NODE_1_length_44035_cov_6.029743_11,291,355,"Sortilin, neurotensin receptor 3,"
+BNR,NODE_1_length_44035_cov_6.029743_11,65,75,BNR/Asp-box repeat
+BNR,NODE_1_length_44035_cov_6.029743_11,128,138,BNR/Asp-box repeat
+BNR,NODE_1_length_44035_cov_6.029743_11,184,194,BNR/Asp-box repeat
+BNR,NODE_1_length_44035_cov_6.029743_11,239,248,BNR/Asp-box repeat
+BNR,NODE_1_length_44035_cov_6.029743_11,295,303,BNR/Asp-box repeat
+BNR,NODE_1_length_44035_cov_6.029743_11,343,353,BNR/Asp-box repeat
+BNR_2,NODE_1_length_44035_cov_6.029743_11,57,76,BNR repeat-like domain
+BNR_2,NODE_1_length_44035_cov_6.029743_11,128,305,BNR repeat-like domain
+BNR_2,NODE_1_length_44035_cov_6.029743_11,343,353,BNR repeat-like domain
+PSII_BNR,NODE_1_length_44035_cov_6.029743_11,41,76,Photosynthesis system II assembly factor YCF48
+PSII_BNR,NODE_1_length_44035_cov_6.029743_11,124,198,Photosynthesis system II assembly factor YCF48
+PSII_BNR,NODE_1_length_44035_cov_6.029743_11,294,358,Photosynthesis system II assembly factor YCF48
+BNR_3,NODE_1_length_44035_cov_6.029743_11,18,78,BNR repeat-like domain
+BNR_3,NODE_1_length_44035_cov_6.029743_11,128,142,BNR repeat-like domain
+BNR_3,NODE_1_length_44035_cov_6.029743_11,236,255,BNR repeat-like domain
+BNR_3,NODE_1_length_44035_cov_6.029743_11,287,304,BNR repeat-like domain
+BNR_3,NODE_1_length_44035_cov_6.029743_11,341,363,BNR repeat-like domain
+DUF4185,NODE_1_length_44035_cov_6.029743_11,64,86,Domain of unknown function (DUF4185)
+DUF4185,NODE_1_length_44035_cov_6.029743_11,126,142,Domain of unknown function (DUF4185)
+DUF4185,NODE_1_length_44035_cov_6.029743_11,182,198,Domain of unknown function (DUF4185)
+DUF4185,NODE_1_length_44035_cov_6.029743_11,229,253,Domain of unknown function (DUF4185)
+DUF4185,NODE_1_length_44035_cov_6.029743_11,322,354,Domain of unknown function (DUF4185)
+YCII,NODE_1_length_44035_cov_6.029743_12,1,112,YCII-related domain
+DoxX_2,NODE_1_length_44035_cov_6.029743_13,1,69,DoxX-like family
+Polyketide_cyc2,NODE_1_length_44035_cov_6.029743_15,27,174,Polyketide cyclase / dehydrase and lipid transport
+AHSA1,NODE_1_length_44035_cov_6.029743_15,37,156,Activator of Hsp90 ATPase homolog 1-like protein
+Polyketide_cyc,NODE_1_length_44035_cov_6.029743_15,35,148,Polyketide cyclase / dehydrase and lipid transport
+Glyoxalase,NODE_1_length_44035_cov_6.029743_16,3,93,Glyoxalase/Bleomycin resistance protein/Dioxygenase superfamily
+Glyoxalase_4,NODE_1_length_44035_cov_6.029743_16,6,96,Glyoxalase/Bleomycin resistance protein/Dioxygenase superfamily
+Glyoxalase_6,NODE_1_length_44035_cov_6.029743_16,7,100,Glyoxalase-like domain
+ABC_tran,NODE_1_length_44035_cov_6.029743_18,33,183,ABC transporter
+oligo_HPY,NODE_1_length_44035_cov_6.029743_18,235,300,"Oligopeptide/dipeptide transporter, C-terminal region"
+AAA_21,NODE_1_length_44035_cov_6.029743_18,46,73,"AAA domain, putative AbiEii toxin, Type IV TA system"
+AAA_21,NODE_1_length_44035_cov_6.029743_18,150,219,"AAA domain, putative AbiEii toxin, Type IV TA system"
+AAA_16,NODE_1_length_44035_cov_6.029743_18,43,152,AAA ATPase domain
+AAA_22,NODE_1_length_44035_cov_6.029743_18,47,212,AAA domain
+AAA_5,NODE_1_length_44035_cov_6.029743_18,47,66,AAA domain (dynein-related subfamily)
+AAA_5,NODE_1_length_44035_cov_6.029743_18,173,202,AAA domain (dynein-related subfamily)
+SMC_N,NODE_1_length_44035_cov_6.029743_18,46,226,RecF/RecN/SMC N terminal domain
+AAA,NODE_1_length_44035_cov_6.029743_18,47,215,ATPase family associated with various cellular activities (AAA)
+DUF87,NODE_1_length_44035_cov_6.029743_18,45,76,"Helicase HerA, central domain"
+DUF87,NODE_1_length_44035_cov_6.029743_18,170,193,"Helicase HerA, central domain"
+Zeta_toxin,NODE_1_length_44035_cov_6.029743_18,47,85,Zeta toxin
+TniB,NODE_1_length_44035_cov_6.029743_18,45,61,Bacterial TniB protein
+TniB,NODE_1_length_44035_cov_6.029743_18,172,212,Bacterial TniB protein
+BPD_transp_1,NODE_1_length_44035_cov_6.029743_19,35,49,Binding-protein-dependent transport system inner membrane component
+BPD_transp_1,NODE_1_length_44035_cov_6.029743_19,113,291,Binding-protein-dependent transport system inner membrane component
+OppC_N,NODE_1_length_44035_cov_6.029743_19,19,63,N-terminal TM domain of oligopeptide transport permease C
+OppC_N,NODE_1_length_44035_cov_6.029743_19,144,159,N-terminal TM domain of oligopeptide transport permease C
+OppC_N,NODE_1_length_44035_cov_6.029743_19,226,238,N-terminal TM domain of oligopeptide transport permease C
+OppC_N,NODE_1_length_44035_cov_6.029743_19,270,276,N-terminal TM domain of oligopeptide transport permease C
+BPD_transp_1,NODE_1_length_44035_cov_6.029743_20,10,25,Binding-protein-dependent transport system inner membrane component
+BPD_transp_1,NODE_1_length_44035_cov_6.029743_20,113,310,Binding-protein-dependent transport system inner membrane component
+SBP_bac_5,NODE_1_length_44035_cov_6.029743_21,75,430,"Bacterial extracellular solute-binding proteins, family 5 Middle"
+SBP_bac_5,NODE_1_length_44035_cov_6.029743_21,452,485,"Bacterial extracellular solute-binding proteins, family 5 Middle"
+oligo_HPY,NODE_1_length_44035_cov_6.029743_22,71,135,"Oligopeptide/dipeptide transporter, C-terminal region"
+AAA_21,NODE_1_length_44035_cov_6.029743_22,3,53,"AAA domain, putative AbiEii toxin, Type IV TA system"
+ABC_tran,NODE_1_length_44035_cov_6.029743_23,24,121,ABC transporter
+AAA_16,NODE_1_length_44035_cov_6.029743_23,17,106,AAA ATPase domain
+RsgA_GTPase,NODE_1_length_44035_cov_6.029743_23,17,73,RsgA GTPase
+AAA_29,NODE_1_length_44035_cov_6.029743_23,26,56,P-loop containing region of AAA domain
+AAA_22,NODE_1_length_44035_cov_6.029743_23,33,59,AAA domain
+Cytidylate_kin2,NODE_1_length_44035_cov_6.029743_24,3,173,Cytidylate kinase-like family
+BON,NODE_1_length_44035_cov_6.029743_24,205,263,BON domain
+ABC_tran,NODE_1_length_44035_cov_6.029743_25,2,29,ABC transporter
+ABC_tran,NODE_1_length_44035_cov_6.029743_25,69,73,ABC transporter
+AAA_21,NODE_1_length_44035_cov_6.029743_25,2,55,"AAA domain, putative AbiEii toxin, Type IV TA system"
+ABC_tran,NODE_1_length_44035_cov_6.029743_26,20,116,ABC transporter
+AAA_29,NODE_1_length_44035_cov_6.029743_26,23,58,P-loop containing region of AAA domain
+ABC_tran,NODE_1_length_44035_cov_6.029743_27,16,170,ABC transporter
+BCA_ABC_TP_C,NODE_1_length_44035_cov_6.029743_27,218,240,Branched-chain amino acid ATP-binding cassette transporter
+AAA_21,NODE_1_length_44035_cov_6.029743_27,29,47,"AAA domain, putative AbiEii toxin, Type IV TA system"
+AAA_21,NODE_1_length_44035_cov_6.029743_27,158,170,"AAA domain, putative AbiEii toxin, Type IV TA system"
+AAA_29,NODE_1_length_44035_cov_6.029743_27,20,42,P-loop containing region of AAA domain
+BPD_transp_2,NODE_1_length_44035_cov_6.029743_28,27,298,Branched-chain amino acid transport system / permease component
+BPD_transp_2,NODE_1_length_44035_cov_6.029743_28,339,401,Branched-chain amino acid transport system / permease component
+BPD_transp_2,NODE_1_length_44035_cov_6.029743_29,8,278,Branched-chain amino acid transport system / permease component
+Peripla_BP_6,NODE_1_length_44035_cov_6.029743_30,25,374,Periplasmic binding protein
+Peripla_BP_5,NODE_1_length_44035_cov_6.029743_30,26,381,Periplasmic binding protein domain
+Amidohydro_2,NODE_1_length_44035_cov_6.029743_31,76,76,Amidohydrolase
+Amidohydro_2,NODE_1_length_44035_cov_6.029743_31,249,459,Amidohydrolase
+Amidohydro_2,NODE_1_length_44035_cov_6.029743_32,92,378,Amidohydrolase
+Sulfatase,NODE_1_length_44035_cov_6.029743_33,283,571,Sulfatase
+CBS,NODE_1_length_44035_cov_6.029743_38,87,99,CBS domain
+CBS,NODE_1_length_44035_cov_6.029743_38,147,172,CBS domain
+CBS,NODE_1_length_44035_cov_6.029743_38,211,249,CBS domain
+ADH_zinc_N,NODE_1_length_44035_cov_6.029743_39,64,88,Zinc-binding dehydrogenase
+ADH_zinc_N,NODE_1_length_44035_cov_6.029743_39,116,132,Zinc-binding dehydrogenase
+ADH_zinc_N,NODE_1_length_44035_cov_6.029743_39,188,257,Zinc-binding dehydrogenase
+Amidase,NODE_1_length_44035_cov_6.029743_43,70,488,Amidase
+ACR_tran,NODE_1_length_44035_cov_6.029743_44,2,1031,AcrB/AcrD/AcrF family
+MMPL,NODE_1_length_44035_cov_6.029743_44,310,514,MMPL family
+MMPL,NODE_1_length_44035_cov_6.029743_44,830,1038,MMPL family
+SecD_SecF,NODE_1_length_44035_cov_6.029743_44,340,498,Protein export membrane protein
+SecD_SecF,NODE_1_length_44035_cov_6.029743_44,880,1017,Protein export membrane protein
+Patched,NODE_1_length_44035_cov_6.029743_44,339,498,Patched family
+HlyD_D23,NODE_1_length_44035_cov_6.029743_45,59,342,Barrel-sandwich domain of CusB or HlyD membrane-fusion
+HlyD_D23,NODE_1_length_44035_cov_6.029743_45,407,430,Barrel-sandwich domain of CusB or HlyD membrane-fusion
+Biotin_lipoyl_2,NODE_1_length_44035_cov_6.029743_45,60,108,Biotin-lipoyl like
+Biotin_lipoyl_2,NODE_1_length_44035_cov_6.029743_45,112,121,Biotin-lipoyl like
+Biotin_lipoyl_2,NODE_1_length_44035_cov_6.029743_45,227,246,Biotin-lipoyl like
+HlyD_3,NODE_1_length_44035_cov_6.029743_45,63,152,HlyD family secretion protein
+HlyD_3,NODE_1_length_44035_cov_6.029743_45,165,193,HlyD family secretion protein
+HlyD_3,NODE_1_length_44035_cov_6.029743_45,226,339,HlyD family secretion protein
+HlyD_3,NODE_1_length_44035_cov_6.029743_45,366,383,HlyD family secretion protein
+HlyD,NODE_1_length_44035_cov_6.029743_45,15,139,HlyD membrane-fusion protein of T1SS
+HlyD,NODE_1_length_44035_cov_6.029743_45,238,263,HlyD membrane-fusion protein of T1SS
+HlyD,NODE_1_length_44035_cov_6.029743_45,353,408,HlyD membrane-fusion protein of T1SS
+HlyD,NODE_1_length_44035_cov_6.029743_45,412,431,HlyD membrane-fusion protein of T1SS
+QSregVF,NODE_1_length_44035_cov_6.029743_45,120,176,Putative quorum-sensing-regulated virulence factor
+ABC_sub_bind,NODE_1_length_44035_cov_6.029743_46,41,323,ABC transporter substrate binding protein
+AP_endonuc_2,NODE_2_length_35907_cov_35.958355_1,30,273,Xylose isomerase-like TIM barrel
+LtrA,NODE_2_length_35907_cov_35.958355_3,88,337,Bacterial low temperature requirement A protein (LtrA)
+PLA2_B,NODE_2_length_35907_cov_35.958355_6,54,273,Lysophospholipase catalytic domain
+eIF3g,NODE_2_length_35907_cov_35.958355_7,39,161,Eukaryotic translation initiation factor 3 subunit G
+RRM_1,NODE_2_length_35907_cov_35.958355_7,228,294,"RNA recognition motif. (a.k.a. RRM, RBD, or RNP domain)"
+RRM_occluded,NODE_2_length_35907_cov_35.958355_7,226,298,Occluded RNA-recognition motif
+Mannosyl_trans3,NODE_2_length_35907_cov_35.958355_8,3,90,Mannosyltransferase putative
+ResIII,NODE_2_length_35907_cov_35.958355_10,125,283,"Type III restriction enzyme, res subunit"
+DEAD,NODE_2_length_35907_cov_35.958355_10,130,288,DEAD/DEAH box helicase
+DEAD,NODE_2_length_35907_cov_35.958355_10,478,512,DEAD/DEAH box helicase
+SWI2_SNF2,NODE_2_length_35907_cov_35.958355_10,148,285,SWI2/SNF2 ATPase
+SWI2_SNF2,NODE_2_length_35907_cov_35.958355_10,486,512,SWI2/SNF2 ATPase
+F-box-like,NODE_2_length_35907_cov_35.958355_13,92,140,F-box-like
+F-box,NODE_2_length_35907_cov_35.958355_13,91,129,F-box domain
+Phage_integrase,E01_1,1,70,Phage integrase family
+Rep_3,E01_3,1,80,Initiator Replication protein
+AAA_31,E01_4,108,286,AAA domain
+CbiA,E01_4,110,341,CobQ/CobB/MinD/ParA nucleotide binding domain
+ParA,E01_4,55,97,NUBPL iron-transfer P-loop NTPase
+ParA,E01_4,108,141,NUBPL iron-transfer P-loop NTPase
+ParA,E01_4,227,268,NUBPL iron-transfer P-loop NTPase
+MerR,E01_4,41,68,MerR family regulatory protein
+MipZ,E01_4,108,151,ATPase MipZ
+MipZ,E01_4,223,271,ATPase MipZ
+ArsA_ATPase,E01_4,115,142,Anion-transporting ATPase
+ArsA_ATPase,E01_4,230,244,Anion-transporting ATPase
+DXP_redisom_C,E01_6,152,235,1-deoxy-D-xylulose 5-phosphate reductoisomerase C-terminal domain
+DXP_reductoisom,E01_6,8,138,1-deoxy-D-xylulose 5-phosphate reductoisomerase
+DXPR_C,E01_6,267,353,DXP reductoisomerase C-terminal domain
+CTP_transf_1,E01_7,3,283,Cytidylyltransferase family
+Prenyltransf,E01_8,41,260,Putative undecaprenyl diphosphate synthase
+Nramp,E01_9,57,405,Natural resistance-associated macrophage protein
+Nramp,E01_9,413,423,Natural resistance-associated macrophage protein
+MgtE_N,E01_10,189,288,MgtE intracellular N domain
+CBS,E01_10,293,348,CBS domain
+CBS,E01_10,360,411,CBS domain
+PRC,E01_10,2,48,PRC-barrel domain
+PRC,E01_10,89,114,PRC-barrel domain
+PRC,E01_10,382,406,PRC-barrel domain
+FliG_M,E01_10,144,157,FliG middle domain
+FliG_M,E01_10,209,236,FliG middle domain
+FliG_M,E01_10,236,273,FliG middle domain
+FliG_C,E01_10,177,227,FliG C-terminal domain
+FliG_C,E01_10,230,286,FliG C-terminal domain
+CYTH,E01_11,3,180,CYTH domain
+Peptidase_S9_N,E01_12,28,439,"Prolyl oligopeptidase, N-terminal beta-propeller domain"
+Peptidase_S9,E01_12,500,715,Prolyl oligopeptidase family
+MutS_V,E01_13,671,856,MutS domain V
+MutS_I,E01_13,6,116,MutS domain I
+MutS_I,E01_13,539,581,MutS domain I
+MutS_III,E01_13,319,616,MutS domain III
+MutS_IV,E01_13,485,575,MutS family domain IV
+MutS_II,E01_13,126,254,MutS domain II
+Ni_hydr_CYTB,E01_14,22,231,Prokaryotic cytochrome b561
+DUF4405,E01_14,31,99,Domain of unknown function (DUF4405)
+DUF4405,E01_14,93,108,Domain of unknown function (DUF4405)
+DUF4405,E01_14,158,215,Domain of unknown function (DUF4405)
+Oxidored_molyb,E01_15,99,230,Oxidoreductase molybdopterin binding domain
+AnmK,E01_16,7,389,Anhydro-N-acetylmuramic acid kinase
+FGGY_C,E01_16,271,338,"FGGY family of carbohydrate kinases, C-terminal domain"
+SBP_bac_5,E01_17,117,468,"Bacterial extracellular solute-binding proteins, family 5 Middle"
+Sua5_yciO_yrdC,E01_18,45,229,Telomere recombination
+SpoU_methylase,E01_19,106,257,SpoU rRNA Methylase family
+SpoU_sub_bind,E01_19,16,88,RNA 2'-O ribose methyltransferase substrate binding
+MgsA_C,E01_20,264,429,MgsA AAA+ ATPase C terminal
+AAA_assoc_2,E01_20,183,263,AAA C-terminal domain
+AAA,E01_20,49,156,ATPase family associated with various cellular activities (AAA)
+RuvB_N,E01_20,16,131,Holliday junction DNA helicase RuvB P-loop domain
+RuvB_N,E01_20,130,152,Holliday junction DNA helicase RuvB P-loop domain
+AAA_16,E01_20,44,73,AAA ATPase domain
+AAA_16,E01_20,89,124,AAA ATPase domain
+AAA_16,E01_20,233,253,AAA ATPase domain
+AAA_5,E01_20,49,132,AAA domain (dynein-related subfamily)
+Sigma54_activat,E01_20,49,141,Sigma-54 interaction domain
+AAA_22,E01_20,47,71,AAA domain
+AAA_22,E01_20,90,118,AAA domain
+Mg_chelatase,E01_20,48,70,"Magnesium chelatase, subunit ChlI"
+Mg_chelatase,E01_20,103,136,"Magnesium chelatase, subunit ChlI"
+AAA_14,E01_20,53,158,AAA domain
+DNA_pol3_delta2,E01_20,37,69,"DNA polymerase III, delta subunit"
+DNA_pol3_delta2,E01_20,84,161,"DNA polymerase III, delta subunit"
+AAA_2,E01_20,45,132,AAA domain (Cdc48 subfamily)
+ResIII,E01_20,44,72,"Type III restriction enzyme, res subunit"
+ResIII,E01_20,94,117,"Type III restriction enzyme, res subunit"
+AAA_18,E01_20,52,71,AAA domain
+AAA_17,E01_20,53,90,AAA domain
+AAA_3,E01_20,50,141,ATPase family associated with various cellular activities (AAA)
+AAA_33,E01_20,50,79,AAA domain
+Glyoxalase,E01_21,33,74,Glyoxalase/Bleomycin resistance protein/Dioxygenase superfamily
+Glyoxalase,E01_21,165,283,Glyoxalase/Bleomycin resistance protein/Dioxygenase superfamily
+Glyoxalase_4,E01_21,41,125,Glyoxalase/Bleomycin resistance protein/Dioxygenase superfamily
+Glyoxalase_4,E01_21,167,266,Glyoxalase/Bleomycin resistance protein/Dioxygenase superfamily
+Glyoxalase_6,E01_21,40,66,Glyoxalase-like domain
+Glyoxalase_6,E01_21,173,277,Glyoxalase-like domain
+CppA_N,E01_21,39,144,CppA N-terminal
+CppA_N,E01_21,172,190,CppA N-terminal
+PD40,E01_22,43,80,WD40-like Beta Propeller Repeat
+PD40,E01_22,109,120,WD40-like Beta Propeller Repeat
+PD40,E01_22,217,232,WD40-like Beta Propeller Repeat
+PD40,E01_22,254,275,WD40-like Beta Propeller Repeat
+PD40,E01_22,299,303,WD40-like Beta Propeller Repeat
+PD40,E01_22,356,367,WD40-like Beta Propeller Repeat
+CoA_binding_2,E01_23,25,138,CoA binding domain
+PseudoU_synth_2,E01_24,66,201,RNA pseudouridylate synthase
+S4,E01_24,4,46,S4 domain
+S4_2,E01_24,12,55,S4 domain
+S4_2,E01_24,136,163,S4 domain
+S4_2,E01_24,202,207,S4 domain
+S4,E01_25,3,44,S4 domain
+PseudoU_synth_2,E01_25,65,153,RNA pseudouridylate synthase
+SMC_ScpB,E01_26,8,168,Segregation and condensation complex subunit ScpB
+SMC_ScpA,E01_27,22,236,Segregation and condensation protein ScpA
+tRNA-synt_1b,E01_28,19,190,tRNA synthetases class I (W and Y)
+tRNA-synt_1b,E01_28,248,367,tRNA synthetases class I (W and Y)
+Acyl-CoA_dh_1,E01_29,241,389,"Acyl-CoA dehydrogenase, C-terminal domain"
+Acyl-CoA_dh_N,E01_29,7,118,"Acyl-CoA dehydrogenase, N-terminal domain"
+Acyl-CoA_dh_M,E01_29,122,229,"Acyl-CoA dehydrogenase, middle domain"
+Acyl-CoA_dh_2,E01_29,77,87,"Acyl-CoA dehydrogenase, C-terminal domain"
+Acyl-CoA_dh_2,E01_29,256,378,"Acyl-CoA dehydrogenase, C-terminal domain"
+Response_reg,E01_30,6,116,Response regulator receiver domain
+LytTR,E01_30,124,140,LytTr DNA-binding domain
+LytTR,E01_30,158,256,LytTr DNA-binding domain
+NUDIX,E01_31,59,171,NUDIX domain
+7TMR-DISM_7TM,E01_32,44,101,7TM diverse intracellular signalling
+7TMR-DISM_7TM,E01_32,123,210,7TM diverse intracellular signalling
+7TMR-DISM_7TM,E01_32,183,311,7TM diverse intracellular signalling
+DNA_pol_B_thumb,E01_33,262,324,DNA polymerase beta thumb
+HHH_8,E01_33,3,72,Helix-hairpin-helix domain
+HHH_8,E01_33,120,146,Helix-hairpin-helix domain
+HHH_8,E01_33,171,183,Helix-hairpin-helix domain
+HHH_5,E01_33,42,70,Helix-hairpin-helix domain
+HHH_5,E01_33,93,146,Helix-hairpin-helix domain
+PHP,E01_33,349,456,PHP domain
+DNA_pol_B_palm,E01_33,165,225,DNA polymerase beta palm
+HHH_2,E01_33,31,71,Helix-hairpin-helix motif
+HHH_2,E01_33,124,148,Helix-hairpin-helix motif
+HHH_3,E01_33,53,85,Helix-hairpin-helix motif
+HHH_3,E01_33,127,150,Helix-hairpin-helix motif
+HHH_3,E01_33,164,176,Helix-hairpin-helix motif
+IMS_HHH,E01_33,54,69,IMS family HHH motif
+IMS_HHH,E01_33,81,90,IMS family HHH motif
+IMS_HHH,E01_33,128,146,IMS family HHH motif
+DUF4097,E01_34,50,307,Putative adhesin
+AsmA_2,E01_34,122,213,AsmA-like C-terminal region
+AsmA_2,E01_34,231,295,AsmA-like C-terminal region
+FecR,E01_34,25,70,FecR protein
+FecR,E01_34,135,197,FecR protein
+FecR,E01_34,232,235,FecR protein
+DUF945,E01_34,86,173,Bacterial protein of unknown function (DUF945)
+DUF945,E01_34,166,224,Bacterial protein of unknown function (DUF945)
+Toast_rack_N,E01_34,43,130,"N-terminal domain of toast_rack, DUF2154"
+Toast_rack_N,E01_34,159,193,"N-terminal domain of toast_rack, DUF2154"
+FtsX,E01_35,88,101,FtsX-like permease family
+FtsX,E01_35,115,201,FtsX-like permease family
+CAT,E01_36,1,30,Chloramphenicol acetyltransferase
+Condensation,E01_36,8,39,Condensation domain
+adh_short_C2,NODE_1_length_44035_cov_6.029743_duplicate_1,20,169,Enoyl-(Acyl carrier protein) reductase
+adh_short,NODE_1_length_44035_cov_6.029743_duplicate_1,12,115,short chain dehydrogenase
+AlaDh_PNT_C,NODE_1_length_44035_cov_6.029743_duplicate_2,78,289,"Alanine dehydrogenase/PNT, C-terminal domain"
+AlaDh_PNT_N,NODE_1_length_44035_cov_6.029743_duplicate_2,2,74,"Alanine dehydrogenase/PNT, N-terminal domain"
+2-Hacid_dh_C,NODE_1_length_44035_cov_6.029743_duplicate_2,40,59,"D-isomer specific 2-hydroxyacid dehydrogenase, NAD binding domain"
+2-Hacid_dh_C,NODE_1_length_44035_cov_6.029743_duplicate_2,108,205,"D-isomer specific 2-hydroxyacid dehydrogenase, NAD binding domain"
+2-Hacid_dh_C,NODE_1_length_44035_cov_6.029743_duplicate_2,273,292,"D-isomer specific 2-hydroxyacid dehydrogenase, NAD binding domain"
+Shikimate_DH,NODE_1_length_44035_cov_6.029743_duplicate_2,107,206,Shikimate / quinate 5-dehydrogenase
+Pyr_redox,NODE_1_length_44035_cov_6.029743_duplicate_2,107,145,Pyridine nucleotide-disulphide oxidoreductase
+3HCDH_N,NODE_1_length_44035_cov_6.029743_duplicate_2,108,152,"3-hydroxyacyl-CoA dehydrogenase, NAD binding domain"
+THF_DHG_CYH_C,NODE_1_length_44035_cov_6.029743_duplicate_2,151,209,"Tetrahydrofolate dehydrogenase/cyclohydrolase, NAD(P)-binding domain"
