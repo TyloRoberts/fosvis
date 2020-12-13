@@ -60,26 +60,26 @@ def create_circos_data(contigs, output_dir, project_title, hmm_db='', e_value=0.
 
 **Required Paramters**
 
-* contigs (str): File path to a FASTA file containing contigs
-* output\_dir (str): File path to a directory where the project folder will be created
-* project\_title (str): Name of the project directory that is created in the ouput_dir (and used for some file prefixes)
+* ```contigs``` (str): File path to a FASTA file containing contigs
+* ```output_dir``` (str): File path to a directory where the project folder will be created
+* ```project_title``` (str): Name of the project directory that is created in the ouput_dir (and used for some file prefixes)
 
 
 **Paramters with Default Values**
 
-* hmm_db (str): File path to a pressed hmm database (default='')
-* e\_value (int): The e-value used for the hmmscan search (default=0.01)
-* min\_contig\_length (int): The minimum size of a contig to be used in the diagram (idea is that each contig should represent one fosmid) (default=10000)
-* min\_blast\_similarity\_percentage (int): Min nucleotide percent similarity (blast percent identity) for link data (default=90)
-* min\_blast\_similarity\_length (int): Min nucleotide similarity length (blast align length) for link data (default=300)
-* link\_transperacny (**str**): The transparency of the links in the diagram in range 0 - 1 (0 is transparent) (default='0.60')
-* percent\_link\_overlap\_tolerance (int): The amount of overlap percentage required to classify two links as similar enough to color them with the same color (default=50)
+* ```hmm_db``` (str): File path to a pressed hmm database (default='')
+* ```e_value``` (int): The e-value used for the hmmscan search (default=0.01)
+* ```min_contig_length``` (int): The minimum size of a contig to be used in the diagram (idea is that each contig should represent one fosmid) (default=10000)
+* ```min_blast_similarity_percentage``` (int): Min nucleotide percent similarity (blast percent identity) for link data (default=90)
+* ```min_blast_similarity_length``` (int): Min nucleotide similarity length (blast align length) for link data (default=300)
+* ```link_transperacny``` (**str**): The transparency of the links in the diagram in range 0 - 1 (0 is transparent) (default='0.60')
+* ```percent_link_overlap_tolerance``` (int): The amount of overlap percentage required to classify two links as similar enough to color them with the same color (default=50)
 * ```inlcude_domains``` (boolean): If True will create protein domain band data, if false will not (default=False)
 	* If set to True, you must also set the ```hmmdb``` paramter to a valid hmm database
-* gc (boolean): If True the diagram will include a track for GC content, if False it will not (default=True)
-* gc\_interval\_len (int): The interval over which gc content is calculated for the histogram (default=100)
-* blast\_type (str): The type of blast to use to create the links (can be 'blastn' OR 'tblastx') (default='blastn')
-* keep\_blast\_data (bool): If True will keep the raw blast data, won't if false (default=False)
+* ```gc``` (boolean): If True, the diagram will include a track for GC content, if False it will not (default=True)
+* ```gc_interval_len``` (int): The interval over which gc content is calculated for the histogram (default=100)
+* ```blast_type``` (str): The type of blast to use to create the links (can be 'blastn' OR 'tblastx') (default='blastn')
+* ```keep_blast_data``` (bool): If True will keep the raw blast data, won't if false (default=False)
 
 
 ### ```make_diagram()```
@@ -88,7 +88,7 @@ make_diagram(data_dir, ncol=2)
 ```
 **Required Paramters**
 
-* data_dir (str): File path to a directory containing the following files created by ```create_circos_data()```:
+* ```data_dir``` (str): File path to a directory containing the following files created by ```create_circos_data()```:
 	* ORF.txt  
 	* ORF_reverse.txt  
 	* Links.txt  
@@ -100,7 +100,7 @@ make_diagram(data_dir, ncol=2)
 
 **Paramters with Default Values**
 
-* ncol (int): Number of columns in the protein domain legend if applicable (default=2)
+* ```ncol``` (int): Number of columns in the protein domain legend if applicable (default=2)
 
 # Output Visualization
 ![alt text](https://github.com/TyloRoberts/fosvis/blob/master/images/fosvis_sample_image.png?raw=true)
@@ -153,14 +153,14 @@ The script outputs the following directories and files after running ```create_c
 
 
 # Manual Image Modifications
-Manual modifications of the data are sometimes necessary to clean up the image.  In order to manually edit the image, simply manually edit the circos input files and re-run make_diagram(). A general outline of how to make all modifications is described first and specifics on common modifications are described after.
+Manual modifications of the data are sometimes necessary to clean up the image.  In order to manually edit the image, simply manually edit the circos input files and re-run ```make_diagram()```. A general outline of how to make all modifications is described first and specifics on common modifications are described after.
 
 **How to Make Modifications**  
 1. Open one of the 4 circos input txt files with a text editor  
 2. Make the modification (details of common modifications described below)  
 3. Save the changes to the same file  
-4. Run the make_diagram() function with the ```circos_diagram_input_data``` directory (containing the modified file)  
-5. The circos_diagram.png file and legends will be overwritten with the changes made to the input files  
+4. Run the ```make_diagram()``` function with the ```circos_diagram_input_data``` directory (containing the modified file)  
+5. The ```circos_diagram.png``` file and legends will be overwritten with the changes made to the input files  
 
 **Details on Common Modifications (What to do in step 2 above)**  
 
@@ -216,9 +216,9 @@ The script uses a variety of tools to create the various data inputs that the ci
 * For the ORF layer, if more than 3 overlap, then any more are not shown in the image
 * Whether the link pinches in the middle or not is as a result of link position data having the orign\_start > or < the origin\_end and the terminus\_start > or < the terminus\_end
 * The chromosome name used will be the sequence id from the fasta file up to (not including) the first space if there is a space in the fasta sequence id.  Thus, make sure for every sequence every header is unique up to the first space.
-* Circos indexing is weird:
+* Circos indexing:
 	* The circos software takes each bp position to be a range
-	* If your karyotype starts at 1 (used in fosvis) the first position would be the range from 1 - 2, the 2nd would be the range from 2 - 3
+	* If your karyotype starts at 1 (as in fosvis) the first position would be the range from 1 - 2, the 2nd would be the range from 2 - 3
 
 
 ## References
@@ -241,5 +241,6 @@ The script uses a variety of tools to create the various data inputs that the ci
 
 ## Acknowledgements
 
-The UBC Hallam Lab  
-Avery Noonan
+UBC Hallam Lab  
+Avery Noonan  
+Connor Morgan-Lang
