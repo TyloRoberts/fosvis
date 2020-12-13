@@ -4,7 +4,7 @@ Contact: tylojroberts@gmail.com
 # FosVis Overview  
 A pip-installable python package designed for visualization of fosmids from functional screens.  Inputs are contigs from an assembly (representing fosmids) and the output is a circos diagram.  The diagram shows sequence or protein homology, open reading frames, GC content and protein domains located on the fosmids.  The package is designed for the following workflow:
 
-![Alt text](./images/fosvis_context.png?raw=true "FosVis Workflow")
+![alt text](https://github.com/TyloRoberts/fosvis/blob/master/images/fosvis_context.png?raw=true)
 
 # Requirements
 * Python3 (must be run with python3)
@@ -96,14 +96,14 @@ make_diagram(data_dir, ncol=2)
 	* circos.conf  
 
 * i.e. it is the path to the ```circos_diagram_input_data``` directory created within the directory created by ```create_circos_data()```
-	
+
 
 **Paramters with Default Values**
-	
+
 * ncol (int): Number of columns in the protein domain legend if applicable (default=2)
 
 # Output Visualization
-![Alt text](./images/fosvis_sample_image.png?raw=true "FosVis Sample Image")
+![alt text](https://github.com/TyloRoberts/fosvis/blob/master/images/fosvis_sample_image.png?raw=true)
 
 The circos diagram output image has the following main features (depending on the paramters used):
 
@@ -194,8 +194,9 @@ Manual modifications of the data are sometimes necessary to clean up the image. 
 
 # Implementation Details
 The script uses a variety of tools to create the various data inputs that the circos software can use to create an image.  The main tools are shown in the diagram below and some additional details are provided about notable configurations of those tools.
+![alt text](https://github.com/TyloRoberts/fosvis/blob/master/images/implementation.png?raw=true)
 
-![Alt text](./images/implementation.png?raw=true "FosVis Implementation")
+
 
 **Links**
 
@@ -217,9 +218,9 @@ The script uses a variety of tools to create the various data inputs that the ci
 * The chromosome name used will be the sequence id from the fasta file up to (not including) the first space if there is a space in the fasta sequence id.  Thus, make sure for every sequence every header is unique up to the first space.
 * Circos indexing is weird:
 	* The circos software takes each bp position to be a range
-	* If your karyotype starts at 1 (used in fosvis) the first position would be the range from 1 - 2, the 2nd would be the range from 2 - 3 
- 
- 
+	* If your karyotype starts at 1 (used in fosvis) the first position would be the range from 1 - 2, the 2nd would be the range from 2 - 3
+
+
 ## References
 
 **Software**
@@ -242,11 +243,3 @@ The script uses a variety of tools to create the various data inputs that the ci
 
 The UBC Hallam Lab  
 Avery Noonan
- 
- 
- 
- 
- 
- 
- 
- 
