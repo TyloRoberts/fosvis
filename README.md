@@ -22,7 +22,7 @@ A pip-installable python package designed for visualization of fosmids from func
 
 
 # Getting Started
-The module has two main methods that control the functionality.  To create the data for the image run ```create_circos_data()```.  Then run ```make_diagram()``` using the created data to output the circos diagram.  The following provides the most basic use of the package:
+The package has two main methods that control the functionality.  To create the data for the image run ```create_circos_data()```.  Then run ```make_diagram()``` using the created data to output the circos diagram.  The following provides the most basic use of the package:
 
 1. Ensure all requirements are met
 2. ```pip install fosvis```
@@ -74,12 +74,12 @@ def create_circos_data(contigs, output_dir, project_title, hmm_db='', e_value=0.
 * ```min_blast_similarity_length``` (int): Min nucleotide similarity length (blast align length) for link data (default=300)
 * ```link_transperacny``` (**str**): The transparency of the links in the diagram in range 0 - 1 (0 is transparent) (default='0.60')
 * ```percent_link_overlap_tolerance``` (int): The amount of overlap percentage required to classify two links as similar enough to color them with the same color (default=50)
-* ```inlcude_domains``` (boolean): If True will create protein domain band data, if false will not (default=False)
+* ```inlcude_domains``` (boolean): If True will create protein domain band data, if False will not (default=False)
 	* If set to True, you must also set the ```hmmdb``` parameter to a valid hmm database
 * ```gc``` (boolean): If True, the diagram will include a track for GC content, if False it will not (default=True)
 * ```gc_interval_len``` (int): The interval over which gc content is calculated for the histogram (default=100)
 * ```blast_type``` (str): The type of blast to use to create the links (can be 'blastn' OR 'tblastx') (default='blastn')
-* ```keep_blast_data``` (bool): If True will keep the raw blast data, won't if false (default=False)
+* ```keep_blast_data``` (bool): If True will keep the raw blast data, won't if False (default=False)
 
 
 ### ```make_diagram()```
