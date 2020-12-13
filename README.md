@@ -13,7 +13,7 @@ A pip-installable python package designed for visualization of fosmids from func
 	* circos (v0.69-8)
 	* prodigal (v2.6.3)
 	* blastn (v2.9.0)
-	* bl2seq (inlcudes tblastx)
+	* bl2seq (includes tblastx)
 	* hmmscan (HMMER 3.3)
 
 * To install circos using conda: ```conda install circos```
@@ -24,7 +24,7 @@ A pip-installable python package designed for visualization of fosmids from func
 # Getting Started
 The module has two main methods that control the functionality.  To create the data for the image run ```create_circos_data()```.  Then run ```make_diagram()``` using the created data to output the circos diagram.  The following provides the most basic use of the package:
 
-1. Ensure all requirnments are met
+1. Ensure all requirements are met
 2. ```pip install fosvis```
 3. Run the following example script with ```python3```
 
@@ -48,7 +48,7 @@ print("Finished Running...")
 
 You can now find your output image in the following directory: ```output_dir/proj_name/circos_diagram_input_data/circos_diagram.png```
 
-# Additional Paramters
+# Additional Parameters
 
 ### ```create_circos_data()```
 
@@ -58,14 +58,14 @@ def create_circos_data(contigs, output_dir, project_title, hmm_db='', e_value=0.
  percent_link_overlap_tolerance=50, include_domains=False, gc=True, gc_interval_len=100, blast_type='blastn', keep_blast_data=False)
 ```
 
-**Required Paramters**
+**Required Parameters**
 
 * ```contigs``` (str): File path to a FASTA file containing contigs
 * ```output_dir``` (str): File path to a directory where the project folder will be created
 * ```project_title``` (str): Name of the project directory that is created in the ouput_dir (and used for some file prefixes)
 
 
-**Paramters with Default Values**
+**Parameters with Default Values**
 
 * ```hmm_db``` (str): File path to a pressed hmm database (default='')
 * ```e_value``` (int): The e-value used for the hmmscan search (default=0.01)
@@ -75,7 +75,7 @@ def create_circos_data(contigs, output_dir, project_title, hmm_db='', e_value=0.
 * ```link_transperacny``` (**str**): The transparency of the links in the diagram in range 0 - 1 (0 is transparent) (default='0.60')
 * ```percent_link_overlap_tolerance``` (int): The amount of overlap percentage required to classify two links as similar enough to color them with the same color (default=50)
 * ```inlcude_domains``` (boolean): If True will create protein domain band data, if false will not (default=False)
-	* If set to True, you must also set the ```hmmdb``` paramter to a valid hmm database
+	* If set to True, you must also set the ```hmmdb``` parameter to a valid hmm database
 * ```gc``` (boolean): If True, the diagram will include a track for GC content, if False it will not (default=True)
 * ```gc_interval_len``` (int): The interval over which gc content is calculated for the histogram (default=100)
 * ```blast_type``` (str): The type of blast to use to create the links (can be 'blastn' OR 'tblastx') (default='blastn')
@@ -86,7 +86,7 @@ def create_circos_data(contigs, output_dir, project_title, hmm_db='', e_value=0.
 ```
 make_diagram(data_dir, ncol=2)
 ```
-**Required Paramters**
+**Required Parameters**
 
 * ```data_dir``` (str): File path to a directory containing the following files created by ```create_circos_data()```:
 	* ORF.txt  
@@ -98,14 +98,14 @@ make_diagram(data_dir, ncol=2)
 * i.e. it is the path to the ```circos_diagram_input_data``` directory created within the directory created by ```create_circos_data()```
 
 
-**Paramters with Default Values**
+**Parameters with Default Values**
 
 * ```ncol``` (int): Number of columns in the protein domain legend if applicable (default=2)
 
 # Output Visualization
 ![alt text](https://github.com/TyloRoberts/fosvis/blob/master/images/fosvis_sample_image.png?raw=true)
 
-The circos diagram output image has the following main features (depending on the paramters used):
+The circos diagram output image has the following main features (depending on the parameters used):
 
 * Outer layer: Represents length/position of fosmid sequences (scale bars show fosmid size in kb)
 * Coloured Bands on Outer Layer: Represent protein domains with each unique domain having an associated color (shown in a separate legend) (will only be shown if ```inlcude_domains=True```)
