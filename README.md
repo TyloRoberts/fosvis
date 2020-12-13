@@ -1,132 +1,165 @@
 Author: Tylo Roberts  
 Contact: tylojroberts@gmail.com
 
-##Overview  
-A python module designed for visualization of fosmids from functional screens.  Inputs are contigs from an assembly (representing fosmids) and the output is a circos diagram.  The diagram shows sequence or protein homology, open reading frames, GC content and protein domains located on the fosmids.
+# FosVis Overview  
+A pip-installable python package designed for visualization of fosmids from functional screens.  Inputs are contigs from an assembly (representing fosmids) and the output is a circos diagram.  The diagram shows sequence or protein homology, open reading frames, GC content and protein domains located on the fosmids.  The package is designed for the following workflow:
 
-##Circos Output Image
-The circos diagram output image has the following main features:
+![Alt text](./images/fosvis_context.png?raw=true "FosVis Workflow")
 
-* Outer layer: Represents the fosmid sequences (scale bars show fosmid size in kb)
-* Coloured Bands on Outer Layer: Represent protein domains with each unique domain having an associated color (shown in a separate legend)
-* Layer 2 and 3: Represent open reading frames (2nd layer shows forward strand, 3rd layer shows reverse strand)
-* Layer 4: GC content
-* Inner Ribbons: The ribbons (links) represent nucleotide/protein 	homology using blastn or tblastx between fosmids
-	* Links representing the same (or part of the same) sequence are grouped by color
-
-##Requirements
-* Python3
-* Pip packages: BioPython, Pandas, Numpy, Matplotlib, seaborn, tqdm
+# Requirements
+* Python3 (must be run with python3)
+* Pip-installable packages: BioPython, Pandas, Numpy, Matplotlib, seaborn, tqdm
 * External Software (all need to be appended to PATH)
 	* circos (v0.69-8)
 	* prodigal (v2.6.3)
 	* blastn (v2.9.0)
+	* bl2seq (inlcudes tblastx)
 	* hmmscan (HMMER 3.3)
 
 * To install circos using conda: ```conda install circos```
 	* You will need to have already set up the bioconda channel: ```conda config --add channels bioconda```
+	* See more at <https://bioconda.github.io/recipes/circos/README.html>
 
-##Use
-The module has two main methods that control the functionality.  To create the data for the image run ```create_circos_data()```.  Then run ```make_diagram()``` using the created data to output the circos diagram.  The two functions are described below:  
 
+# Getting Started
+The module has two main methods that control the functionality.  To create the data for the image run ```create_circos_data()```.  Then run ```make_diagram()``` using the created data to output the circos diagram.  The following provides the most basic use of the package:
+
+1. Ensure all requirnments are met
+2. ```pip install fosvis```
+3. Run the following example script with ```python3```
 
 ```
-def create_circos_data(contigs, output_dir, project_title, hmm_db, e_value=0.01, min_contig_length=30000,
+from fosvis import fosvis
+
+# fasta contigs file (all contigs in one file)
+contigs = '<path_to_contigs_fasta_file>'
+
+# File path to a directory where the project folder will be created
+output_dir = '<path_to_an_output_directory>'
+
+# A Project Name (output directory will be created with this name)
+proj_name = 'test_project'
+
+print("Running...")
+fosvis.create_circos_data(contigs, output_dir, proj_name)
+fosvis.make_diagram(output_dir + "/" + proj_name + "/circos_diagram_input_data")
+print("Finished Running...")
+```
+
+You can now find your output image in the following directory: ```output_dir/proj_name/circos_diagram_input_data/circos_diagram.png```
+
+# Additional Paramters
+
+### ```create_circos_data()```
+
+```
+def create_circos_data(contigs, output_dir, project_title, hmm_db='', e_value=0.01, min_contig_length=10000,
  min_blast_similarity_percentage=90, min_blast_similarity_length=300, link_transperacny='0.60',
- percent_link_overlap_tolerance=50, include_domains=True, gc=True, gc_interval_len=100, blast_type='blastn', keep_blast_data=False):
+ percent_link_overlap_tolerance=50, include_domains=False, gc=True, gc_interval_len=100, blast_type='blastn', keep_blast_data=False)
 ```
 
- <span style="color:blue"> split these up into required and default params</span>.
+**Required Paramters**
 
 * contigs (str): File path to a FASTA file containing contigs
-* output_dir (str): File path to a directory where the project folder will be created
-* project_title (str): Name of the project directory that is created in the ouput_dir (and used for some file prefixes)
-* hmm_db (str): File path to a pressed hmm database
-* e_value (int): The e-value used for the hmmscan search
-* min_contig_length (int): The minimum size of a contig to be used in the diagram (idea is that each contig should represent one fosmid)
-* min_blast_similarity_percentage (int): Min nucleotide percent similarity (blast percent identity) for link data
-* min_blast_similarity_length (int): Min nucleotide similarity length (blast align length) for link data
-* link_transperacny (str): The transparency of the links in the diagram in range 0 - 1 (0 is transparent)
-* percent_link_overlap_tolerance (int): The amount of overlap percentage required to classify two links as similar enough to color them with the same color
-* inlcude_domains (boolean): If True will create protein domain band data, if false will not
-* gc (boolean): If True the diagram will include a track for GC content, if False it will not
-* gc_interval_len (int): The interval over which gc content is calculated for the histogram
-* blast_type (str): The type of blast to use to create the links (can be 'blastn' OR 'tblastx')
-* keep_blast_data (bool): If True will keep the raw blast data, won't if false
+* output\_dir (str): File path to a directory where the project folder will be created
+* project\_title (str): Name of the project directory that is created in the ouput_dir (and used for some file prefixes)
 
-Note: If using inlcude_domains=False, can just set the hmmdb and e_value parameters to None - this doesnt work actually bc you concatenate it so just use ""
 
+**Paramters with Default Values**
+
+* hmm_db (str): File path to a pressed hmm database (default='')
+* e\_value (int): The e-value used for the hmmscan search (default=0.01)
+* min\_contig\_length (int): The minimum size of a contig to be used in the diagram (idea is that each contig should represent one fosmid) (default=10000)
+* min\_blast\_similarity\_percentage (int): Min nucleotide percent similarity (blast percent identity) for link data (default=90)
+* min\_blast\_similarity\_length (int): Min nucleotide similarity length (blast align length) for link data (default=300)
+* link\_transperacny (**str**): The transparency of the links in the diagram in range 0 - 1 (0 is transparent) (default='0.60')
+* percent\_link\_overlap\_tolerance (int): The amount of overlap percentage required to classify two links as similar enough to color them with the same color (default=50)
+* ```inlcude_domains``` (boolean): If True will create protein domain band data, if false will not (default=False)
+	* If set to True, you must also set the ```hmmdb``` paramter to a valid hmm database
+* gc (boolean): If True the diagram will include a track for GC content, if False it will not (default=True)
+* gc\_interval\_len (int): The interval over which gc content is calculated for the histogram (default=100)
+* blast\_type (str): The type of blast to use to create the links (can be 'blastn' OR 'tblastx') (default='blastn')
+* keep\_blast\_data (bool): If True will keep the raw blast data, won't if false (default=False)
+
+
+### ```make_diagram()```
 ```
-make_diagram(data_dir, ncol)
+make_diagram(data_dir, ncol=2)
 ```
-Description: Creates the circos diagram using the files in the data_dir
+**Required Paramters**
 
-* data_dir (str): File path to a directory containing the following files:
+* data_dir (str): File path to a directory containing the following files created by ```create_circos_data()```:
 	* ORF.txt  
 	* ORF_reverse.txt  
 	* Links.txt  
 	* Karyotype.txt  
 	* circos.conf  
-* ncol (int): Number of columns in the protein domain legend  
 
-##Example Use in a Python Script
-```
-from fosvis import fosvis
+* i.e. it is the path to the ```circos_diagram_input_data``` directory created within the directory created by ```create_circos_data()```
+	
 
-contigs = '<path>/<fosmids>.fasta'
-output_dir = '<path>/<a_directory_to make_project_in>'
-hmm_db = '<path>/Pfam-A.hmm'
-proj_name = ‘test_project_name’
+**Paramters with Default Values**
+	
+* ncol (int): Number of columns in the protein domain legend if applicable (default=2)
 
-print(“Running…”)
-fosvis.create_circos_data(contigs, output_dir, proj_name, hmm_db, e_value=0.0001, min_contig_length=1, min_blast_similarity_length=1, min_blast_similarity_percentage=1, include_domains=False, gc=True, gc_interval_len=500, blast_type='blastn', keep_blast_data=True)
-fosvis.make_diagram(output_dir + "/" + proj_name + "/circos_diagram_input_data", 5)
-print("Finished Running...")
-```
+# Output Visualization
+![Alt text](./images/fosvis_sample_image.png?raw=true "FosVis Sample Image")
 
-##Outputs
-The script outputs the following file structure for every project after running create_circos_data() and make_diagram():
+The circos diagram output image has the following main features (depending on the paramters used):
 
- <span style="color:red"> image</span>
+* Outer layer: Represents length/position of fosmid sequences (scale bars show fosmid size in kb)
+* Coloured Bands on Outer Layer: Represent protein domains with each unique domain having an associated color (shown in a separate legend) (will only be shown if ```inlcude_domains=True```)
+* 2 Tile Layers (layers 2 & 3): Represent open reading frames (2nd layer shows forward strand, 3rd layer shows reverse strand)
+* Histogram Layer: GC content (only included if ```gc=True```)
+* Inner Ribbons: The ribbons (links) represent nucleotide/protein homology using blastn or tblastx between fosmids
+	* Links representing the same (or part of the same) sequence are grouped by color
 
-**prodigal Directory**
 
-* prodigal\_prtn_seq_output.faa -> Protein sequences of prodigal open reading frames identified in the fosmids
-* prodigal\_orf\_output -> Prodigal open reading frame position data
+# Output Files
+The script outputs the following directories and files after running ```create_circos_data()``` and ```make_diagram()```:
 
-**hmmscan Directory**
+**```intermediate_ouputs/prodigal``` Directory**
 
-* \<project\_title>_tblout.txt  -> hmmscan tbl format output file
-* \<project\_title>_out.txt -> hmmscan full format output file
-* \<project\_title>_domtblout.txt -> hmmscan domtbl format output file
+* ```prodigal_prtn_seq_output.faa``` - Protein sequences of prodigal open reading frames identified in the fosmids
+* ```prodigal_orf_output```- Prodigal open reading frame position data
 
-**correct\_length\_contigs Directory**
+**```intermediate_ouputs/hmmscan``` Directory**
 
-* \<contig_name>.fasta -> An individual fasta file for each contig in the input contigs file that is >= to the minimum contig size provided
-* all\_correct\_size\_contigs.fasta -> All correct sized contigs in one fasta file
+* Empty unless ```include_domains=True```
+* ```<project_title>_tblout.txt```  - hmmscan tbl format output file
+* ```<project_title>_out.txt``` - hmmscan full format output file
+* ```<project_title>_domtblout.txt``` - hmmscan domtbl format output file
 
-**circos_diagram_input_data Directory**
+**```intermediate_ouputs/correct_length_contigs``` Directory**
 
-* ORF.txt -> Circos open reading frame (forward strand) input data
-* ORF_reverse.txt -> Circos open reading frame (reverse strand) input data
-* links.txt -> Circos sequence similarity link data
-* karyotype.txt -> Circos outer layer input data
-* protein_domain_legend.png -> Legend showing protein domain colors shown on the circos diagram
-* karyotype_legend.png -> Legend for fosmid names represented as 1,2,3 etc. on the diagram
-* circos.conf -> Configuration file for circos software
-* circos_diagram.svg -> Circos diagram output (svg format)
-* circos_diagram.png -> Circos diagram output (png format)
+* ```<contig_name>.fasta``` - An individual fasta file for each contig in the input contigs file that is >= to the minimum contig size provided
+* ```all_correct_size_contigs.fasta``` - All correct sized contigs in one fasta file
 
-Note: \<include note on blast file directory>
+**```intermediate_ouputs/blastn``` Directory**
 
-##Manual Image Modifications
+* Contains blastn outputs if ```keep_blast_data=False```
+
+**```circos_diagram_input_data``` Directory**
+
+* ```ORF.txt``` - Circos open reading frame (forward strand) input data
+* ```ORF_reverse.txt``` - Circos open reading frame (reverse strand) input data
+* ```links.txt``` - Circos sequence similarity link data
+* ```karyotype.txt``` - Circos outer layer input data
+* ```protein_domain_legend.png``` - Legend showing protein domain colors shown on the circos diagram (Empty unless ```include_domains=True```)
+* ```karyotype_legend.png``` - Legend for fosmid names represented as 1,2,3 etc. on the diagram
+* ```circos.conf``` - Configuration file for circos software
+* ```circos_diagram.svg``` - Circos diagram output (svg format)
+* ```circos_diagram.png``` - Circos diagram output (png format)
+
+
+# Manual Image Modifications
 Manual modifications of the data are sometimes necessary to clean up the image.  In order to manually edit the image, simply manually edit the circos input files and re-run make_diagram(). A general outline of how to make all modifications is described first and specifics on common modifications are described after.
 
 **How to Make Modifications**  
-1. Open the one of the 4 circos input txt files with a text editor  
+1. Open one of the 4 circos input txt files with a text editor  
 2. Make the modification (details of common modifications described below)  
 3. Save the changes to the same file  
-4. Run the make_diagram() function with the circos_diagram_input_data directory (containing the modified file)  
+4. Run the make_diagram() function with the ```circos_diagram_input_data``` directory (containing the modified file)  
 5. The circos_diagram.png file and legends will be overwritten with the changes made to the input files  
 
 **Details on Common Modifications (What to do in step 2 above)**  
@@ -157,19 +190,18 @@ Manual modifications of the data are sometimes necessary to clean up the image. 
 
 5. Changing Diagram Layout/Features (not recommended)
 	* To change the fundamental layout of the image (layer size/positions, adding additional layers) you need to edit the circos.conf file
-	* See the circos website for more information
+	* See the circos documentation for more information: <http://circos.ca/documentation/>
 
-##Implementation Details
+# Implementation Details
 The script uses a variety of tools to create the various data inputs that the circos software can use to create an image.  The main tools are shown in the diagram below and some additional details are provided about notable configurations of those tools.
 
- <span style="color:red"> image</span>
+![Alt text](./images/implementation.png?raw=true "FosVis Implementation")
 
 **Links**
 
-* Every combination of pairs of fosmids are blasted against each other (using blastn)
-* The outputs are parsed and only blast alignments are only kept if the sequences have a percent similarity >= the parameter min_blast_similarity_percentage and a length >= the parameter min_blast_similarity_length given in create_circos_data()
+* Every combination of pairs of fosmids are blasted against each other (using blastn or tblastx)
+* The outputs are parsed and only blast alignments are only kept if the sequences have a percent similarity >= the parameter min_blast_similarity_percentage and a length >= the parameter ```min_blast_similarity_length``` given in ```create_circos_data()```
 * A function is then run that looks for sets of links that are potentially representing the same (or some of the same) sequence and groups them by assigning them all with the same color
-* <add in tblastx info>
 
 **prodigal**
 
@@ -178,11 +210,43 @@ The script uses a variety of tools to create the various data inputs that the ci
 	* Prodigal also uses GTG as a start codon
 
 
-##Small Details Worth Noting
+# Small Details Worth Noting
 
-* For the ORF layer, if more than 3 overlap then any more are not shown in the image
-* Whether the link pinches in the middle or not is as a result of link position data having the orign_start > or < the origin_end and the terminus_start > or < the terminus_end
+* For the ORF layer, if more than 3 overlap, then any more are not shown in the image
+* Whether the link pinches in the middle or not is as a result of link position data having the orign\_start > or < the origin\_end and the terminus\_start > or < the terminus\_end
 * The chromosome name used will be the sequence id from the fasta file up to (not including) the first space if there is a space in the fasta sequence id.  Thus, make sure for every sequence every header is unique up to the first space.
+* Circos indexing is weird:
+	* The circos software takes each bp position to be a range
+	* If your karyotype starts at 1 (used in fosvis) the first position would be the range from 1 - 2, the 2nd would be the range from 2 - 3 
+ 
+ 
+## References
+
+**Software**
+
+*Hyatt, D., Chen, G., LoCascio, P.F. et al. Prodigal: prokaryotic gene recognition and translation initiation site identification. BMC Bioinformatics 11, 119 (2010). https://doi.org/10.1186/1471-2105-11-119*
+
+*Altschul SF, Gish W, Miller W, Myers EW, Lipman DJ. Basic local alignment search tool. J Mol Biol. 1990;215(3):403-410. doi:10.1016/S0022-2836(05)80360-2*
+
+*HMMER. (2020). http://hmmer.org/.*
+
+*Krzywinski, M., Schein, J., Birol, I., Connors, J., Gascoyne, R., & Horsman, D. et al. (2009). Circos: An information aesthetic for comparative genomics. Genome Research, 19(9), 1639-1645. doi: 10.1101/gr.092759.109*
 
 
- <span style="color:red"> refrences, circos indexing etx</span>
+
+**Sample Image Data**
+
+*Mewis K, Armstrong Z, Song YC, Baldwin SA, Withers SG, Hallam SJ. Biomining active cellulases from a mining bioremediation system. J Biotechnol. 2013;167(4):462-471. doi:10.1016/j.jbiotec.2013.07.015*
+
+## Acknowledgements
+
+The UBC Hallam Lab  
+Avery Noonan
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

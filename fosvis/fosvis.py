@@ -20,6 +20,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import statistics
 import seaborn as sns
+from shutil import which
 
 """
 How to use: Script is used through the create_circos_data() and make_diagram() methods.  See documentation pdf for more detail.
@@ -27,7 +28,7 @@ How to use: Script is used through the create_circos_data() and make_diagram() m
 
 ############################### create_circos_data #############################
 
-def create_circos_data(contigs, output_dir, project_title, hmm_db, e_value=0.01, min_contig_length=10000, min_blast_similarity_percentage=90, min_blast_similarity_length=300, link_transperacny='0.60', percent_link_overlap_tolerance=50, include_domains=True, gc=True, gc_interval_len=100, blast_type='blastn', keep_blast_data=False):
+def create_circos_data(contigs, output_dir, project_title, hmm_db='', e_value=0.01, min_contig_length=10000, min_blast_similarity_percentage=90, min_blast_similarity_length=300, link_transperacny='0.60', percent_link_overlap_tolerance=50, include_domains=False, gc=True, gc_interval_len=100, blast_type='blastn', keep_blast_data=False):
     """
     Create the following input files for a circos diagram:
         - ORF.txt
@@ -56,6 +57,28 @@ def create_circos_data(contigs, output_dir, project_title, hmm_db, e_value=0.01,
     Returns:
         None
     """
+    # check if all required programs are in PATH
+    if which('circos') is None:
+        print("Could not find circos, please install and append to PATH")
+        sys.exit()
+
+    if which('prodigal') is None:
+        print("Could not find prodigal, please install and append to PATH")
+        sys.exit()
+
+    if blast_type == 'blastn':
+        if which('blastn') is None:
+            print("Could not find blastn, please install and append to PATH")
+            sys.exit()
+
+    if blast_type == 'tblastx':
+        if which('bl2seq') is None:
+            print("Could not find tblastx (called bl2seq in PATH), please install and append to PATH")
+            sys.exit()
+
+    if which('hmmscan') is None:
+        print("Could not find hmmscan, please install and append to PATH")
+        sys.exit()
 
     project_directory = output_dir + '/' + project_title
 
@@ -78,6 +101,8 @@ def create_circos_data(contigs, output_dir, project_title, hmm_db, e_value=0.01,
 
     # links data
     links_df = links.get_link_data(list_of_correct_len_contigs_paths, blast_type, project_directory, min_blast_similarity_percentage, min_blast_similarity_length, link_transperacny, percent_link_overlap_tolerance, keep_blast_data)
+    if links_df.empty:
+        print('No links were found, your diagram will still be created but no links will be displayed between your sequences')
     links_df.to_csv(project_directory + '/circos_diagram_input_data/links.txt', sep=' ', index=False, header=False)
 
     # orf data
@@ -185,7 +210,7 @@ def write_paramters_log(project_directory, contigs, output_dir, project_title, h
 
 #################### make_diagram ##############################################
 
-def make_diagram(data_dir, ncol):
+def make_diagram(data_dir, ncol=2):
     """
     Makes call to circos to make the diagram.
     Creates the protein domain and karyotype legends.
