@@ -28,7 +28,7 @@ How to use: Script is used through the create_circos_data() and make_diagram() m
 
 ############################### create_circos_data #############################
 
-def create_circos_data(contigs, output_dir, project_title, hmm_db='', e_value=0.01, min_contig_length=10000, min_blast_similarity_percentage=90, min_blast_similarity_length=300, link_transperacny='0.60', percent_link_overlap_tolerance=50, include_domains=False, gc=True, gc_interval_len=100, blast_type='blastn', keep_blast_data=False):
+def create_circos_data(contigs, output_dir, project_title, orfs=True, gc=True, custom_histogram=False, custom_histogram_file='', hmm_db='', e_value=0.01, min_contig_length=10000, min_blast_similarity_percentage=90, min_blast_similarity_length=300, link_transperacny='0.60', percent_link_overlap_tolerance=50, include_domains=False, gc_interval_len=100, blast_type='blastn', keep_blast_data=False):
     """
     Create the following input files for a circos diagram:
         - ORF.txt
@@ -41,6 +41,10 @@ def create_circos_data(contigs, output_dir, project_title, hmm_db='', e_value=0.
         contigs (str): File path to a FASTA file containing contigs
         output_dir (str): File path to a directory where the project folder will be created
         project_title (str): Name of the project directory that is created in the ouput_dir (and used for some file prefixes)
+        orfs (bool): If True will include orfs layers, if False don't
+        gc (bool): If True include GC layer, if False don't
+        custom_histogram (bool): If True, inlcude custom histogram layer, if False don't
+        custom_histogram_file (str): File path to a custom histogram data txt file (see documentation for more details)
         hmm_db (str): File path to a pressed hmm database
         e_value (int): The e-value used for the hmmscan search
         min_contig_length (int): The minimum size of a contig to be used in the diagram (idea is that each contig should represent one fosmid)
@@ -49,7 +53,6 @@ def create_circos_data(contigs, output_dir, project_title, hmm_db='', e_value=0.
         link_transperacny (str): The transparency of the links in the diagram in range 0 - 1 (0 is transparent)
         percent_link_overlap_tolerance (int): The amount of overlap percentage required to classify two links as similar enough to color them with the same color
         inlcude_domains (boolean): If True will create protein domain band data, if false will not
-        gc (boolean): If True the diagram will include a track for GC content, if False it will not
         gc_interval_len (int): The interval over which gc content is calculated for the histogram
         blast_type (str): The type of blast to use to create the links (can be 'blastn' OR 'tblastx')
         keep_blast_data (bool): If True will keep the raw blast data, won't if false
@@ -106,7 +109,8 @@ def create_circos_data(contigs, output_dir, project_title, hmm_db='', e_value=0.
     links_df.to_csv(project_directory + '/circos_diagram_input_data/links.txt', sep=' ', index=False, header=False)
 
     # orf data
-    prodigal_prtn_seq_output = orf.create_orf_data(project_directory, correct_size_contigs_path)
+    if orfs:
+        prodigal_prtn_seq_output = orf.create_orf_data(project_directory, correct_size_contigs_path)
 
     # Protein domain data
     if include_domains:
@@ -120,10 +124,11 @@ def create_circos_data(contigs, output_dir, project_title, hmm_db='', e_value=0.
         gc_content_df.to_csv(gc_content_file, sep=' ', index=False, header=False)
 
     # Create circos conf file
-    if gc:
-        diagram_and_legend.create_circos_conf_file(project_directory + '/circos_diagram_input_data/circos.conf', project_directory + '/circos_diagram_input_data/karyotype.txt', project_directory + '/circos_diagram_input_data/links.txt', project_directory + '/circos_diagram_input_data/ORF.txt', project_directory + '/circos_diagram_input_data/ORF_reverse.txt', gc_data=project_directory + '/circos_diagram_input_data/gc_content.txt')
-    else:
-        diagram_and_legend.create_circos_conf_file(project_directory + '/circos_diagram_input_data/circos.conf', project_directory + '/circos_diagram_input_data/karyotype.txt', project_directory + '/circos_diagram_input_data/links.txt', project_directory + '/circos_diagram_input_data/ORF.txt', project_directory + '/circos_diagram_input_data/ORF_reverse.txt')
+    diagram_and_legend.create_circos_conf_file(project_directory + '/circos_diagram_input_data/circos.conf', project_directory + '/circos_diagram_input_data/karyotype.txt', project_directory + '/circos_diagram_input_data/links.txt', orfs, gc, custom_histogram, orf_forward_file=project_directory + '/circos_diagram_input_data/ORF.txt', orf_reverse_file=project_directory + '/circos_diagram_input_data/ORF_reverse.txt', gc_file=project_directory + '/circos_diagram_input_data/gc_content.txt', custom_histogram_file=custom_histogram_file)
+    # if gc:
+    #     diagram_and_legend.create_circos_conf_file(project_directory + '/circos_diagram_input_data/circos.conf', project_directory + '/circos_diagram_input_data/karyotype.txt', project_directory + '/circos_diagram_input_data/links.txt', project_directory + '/circos_diagram_input_data/ORF.txt', project_directory + '/circos_diagram_input_data/ORF_reverse.txt', gc_data=project_directory + '/circos_diagram_input_data/gc_content.txt')
+    # else:
+    #     diagram_and_legend.create_circos_conf_file(project_directory + '/circos_diagram_input_data/circos.conf', project_directory + '/circos_diagram_input_data/karyotype.txt', project_directory + '/circos_diagram_input_data/links.txt', project_directory + '/circos_diagram_input_data/ORF.txt', project_directory + '/circos_diagram_input_data/ORF_reverse.txt')
 
 
 def setup_project_dirs(project_directory, blast_type):

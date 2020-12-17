@@ -53,9 +53,8 @@ You can now find your output image in the following directory: ```output_dir/pro
 ### ```create_circos_data()```
 
 ```
-def create_circos_data(contigs, output_dir, project_title, hmm_db='', e_value=0.01, min_contig_length=10000,
- min_blast_similarity_percentage=90, min_blast_similarity_length=300, link_transperacny='0.60',
- percent_link_overlap_tolerance=50, include_domains=False, gc=True, gc_interval_len=100, blast_type='blastn', keep_blast_data=False)
+def create_circos_data(contigs, output_dir, project_title, orfs=True, gc=True, custom_histogram=False, custom_histogram_file='', hmm_db='', e_value=0.01, min_contig_length=10000, min_blast_similarity_percentage=90, min_blast_similarity_length=300, link_transperacny='0.60',
+ percent_link_overlap_tolerance=50, include_domains=False, gc_interval_len=100, blast_type='blastn', keep_blast_data=False)
 ```
 
 **Required Parameters**
@@ -66,7 +65,10 @@ def create_circos_data(contigs, output_dir, project_title, hmm_db='', e_value=0.
 
 
 **Parameters with Default Values**
-
+* ```orfs``` (bool): If True will include orfs layers, if False don't (default=True)
+* ```gc``` (bool): If True include GC layer, if False don't (default=True)
+* ```custom_histogram``` (bool): If True, inlcude custom histogram layer, if False don't (default=False)
+* ```custom_histogram_file``` (str): File path to a custom histogram data txt file (see documentation for more details)
 * ```hmm_db``` (str): File path to a pressed hmm database (default='')
 * ```e_value``` (int): The e-value used for the hmmscan search (default=0.01)
 * ```min_contig_length``` (int): The minimum size of a contig to be used in the diagram (idea is that each contig should represent one fosmid) (default=10000)
@@ -76,7 +78,6 @@ def create_circos_data(contigs, output_dir, project_title, hmm_db='', e_value=0.
 * ```percent_link_overlap_tolerance``` (int): The amount of overlap percentage required to classify two links as similar enough to color them with the same color (default=50)
 * ```inlcude_domains``` (boolean): If True will create protein domain band data, if False will not (default=False)
 	* If set to True, you must also set the ```hmmdb``` parameter to a valid hmm database
-* ```gc``` (boolean): If True, the diagram will include a track for GC content, if False it will not (default=True)
 * ```gc_interval_len``` (int): The interval over which gc content is calculated for the histogram (default=100)
 * ```blast_type``` (str): The type of blast to use to create the links (can be 'blastn' OR 'tblastx') (default='blastn')
 * ```keep_blast_data``` (bool): If True will keep the raw blast data, won't if False (default=False)
