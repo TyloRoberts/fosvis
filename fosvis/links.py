@@ -55,7 +55,7 @@ def get_link_data(list_of_correct_len_contigs_paths, blast_type, project_directo
     total_len = sum(1 for e in itertools.combinations(list_of_correct_len_contigs_paths, 2))
     with tqdm(total=total_len) as pbar:
         # Loop through all combinations of contigs
-        for pair in tqdm(itertools.combinations(list_of_correct_len_contigs_paths, 2)):
+        for pair in itertools.combinations(list_of_correct_len_contigs_paths, 2):
             if blast_type == 'blastn':
                 pair_homology_df = get_pair_blastn_links(pair[0], pair[1], project_directory, min_blast_similarity_percentage, min_blast_similarity_length, keep_blast_data)
             elif blast_type == 'tblastx':

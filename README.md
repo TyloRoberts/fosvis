@@ -2,7 +2,25 @@ Author: Tylo Roberts
 Contact: tylojroberts@gmail.com
 
 # FosVis Overview  
-A pip-installable python package designed for visualization of fosmids from functional screens.  Inputs are contigs from an assembly (representing fosmids) and the output is a circos diagram.  The diagram shows sequence or protein homology, open reading frames, GC content and protein domains located on the fosmids.  The package is designed for the following workflow:
+A pip-installable python package designed for visualization of fosmids from functional screens.  The inputs are contigs from an assembly (representing fosmids) and the output is a circos diagram.  
+
+A circos diagram allows relationships between genomic data to be easily visulaized, as well providing an easy way to inlcude many differnt types of data into one diagram through differnt layers within the circle.
+
+Fosvis allows users to select and create the data they want included in their diagram from a number of predifined data types:
+
+Fosvis works in a modular fashion allowing users to select the layers they want included in their diagram and the sofwt
+
+The user select what types of data they would like to include in the layers of the diagram and FosVis generates that data and creates a final output image.  Users can select from the following types of data:
+
+* Custom Data
+* Open Reading Frames (ORFs)
+* GC Content
+* Protein Domains
+* Protein or Seqeunce Homology
+
+FosVis is also set up to allow manual modifications to the final image through adjustments of the data or circos software configuraiton files.  This way, all of the features of the circos software (<http://circos.ca/>) can be fully exploited.
+
+The package can be used for many applications but is designed for the following fosmid functional screening workflow:
 
 ![alt text](https://github.com/TyloRoberts/fosvis/blob/master/images/fosvis_context.png?raw=true)
 
@@ -22,7 +40,21 @@ A pip-installable python package designed for visualization of fosmids from func
 
 
 # Getting Started
-The package has two main methods that control the functionality.  To create the data for the image run ```create_circos_data()```.  Then run ```make_diagram()``` using the created data to output the circos diagram.  The following provides the most basic use of the package:
+
+The package has two main methods that control the functionality.  To create the data for the image run ```create_circos_data()```.  Then run ```make_diagram()``` using the created data to output the circos diagram.
+
+The diagram is set up with the following structure of layers from the outside to the center of the circle respectivley:
+
+1.  Karyotype (shows length of fosmids - includes protein domain data if selected in the paramaters)
+2.  ORFs
+3.  GC Content
+4.  Custom Histogram (see custom histogram section)
+5.  Homology Links
+
+Using the parmaters described in the Paramters section you can control which of layers 2-4 to include as you see fit as well as many paramters involved in the creation of the data for all layers.
+
+The following provides the most basic use of the package, more detailed use can be seen in the Paramaters section:
+
 
 1. Ensure all requirements are met
 2. ```pip install fosvis```
@@ -46,9 +78,9 @@ fosvis.make_diagram(output_dir + "/" + proj_name + "/circos_diagram_input_data")
 print("Finished Running...")
 ```
 
-You can now find your output image in the following directory: ```output_dir/proj_name/circos_diagram_input_data/circos_diagram.png```
+Within the specified output directory, there will be a folder created with the same name as the ```proj_name```.  Within this direcotry there will be a directory called ```circos_diagram_input_data``` which will contain your image as a file called ```circos_diagram.png```.
 
-# Additional Parameters
+# Parameters
 
 ### ```create_circos_data()```
 
@@ -61,26 +93,47 @@ def create_circos_data(contigs, output_dir, project_title, orfs=True, gc=True, c
 
 * ```contigs``` (str): File path to a FASTA file containing contigs
 * ```output_dir``` (str): File path to a directory where the project folder will be created
-* ```project_title``` (str): Name of the project directory that is created in the ouput_dir (and used for some file prefixes)
+* ```project_title``` (str): Name of the project directory that is created in the ```ouput_dir``` (and used for some file prefixes)
 
 
-**Parameters with Default Values**
+**Quality Control Parameters**
+
+* ```min_contig_length``` (int): The minimum size of a contig to be used in the diagram (idea is that each contig should represent one fosmid) (default=10000)
+
+
+**Open Reading Frame (ORF) Layer Parameters**
+
 * ```orfs``` (bool): If True will include orfs layers, if False don't (default=True)
+
+**GC Content Layer Parameters**
+
 * ```gc``` (bool): If True include GC layer, if False don't (default=True)
+* ```gc_interval_len``` (int): The interval over which gc content is calculated for the histogram (default=100)
+
+
+**Custom Histogram Layer Parameters**
+
 * ```custom_histogram``` (bool): If True, inlcude custom histogram layer, if False don't (default=False)
-* ```custom_histogram_file``` (str): File path to a custom histogram data txt file (see documentation for more details)
+	* If set to True, you must inlcude data for the histogram in the ```custom_histogram_file``` parameter
+* ```custom_histogram_file``` (str): File path to a custom histogram data txt file (see section ########)
+
+**Protein Domain Parameters**
+
 * ```hmm_db``` (str): File path to a pressed hmm database (default='')
 * ```e_value``` (int): The e-value used for the hmmscan search (default=0.01)
-* ```min_contig_length``` (int): The minimum size of a contig to be used in the diagram (idea is that each contig should represent one fosmid) (default=10000)
+* ```inlclude_domains``` (boolean): If True will create protein domain band data, if False will not (default=False)
+	* If set to True, you must also set the ```hmmdb``` parameter to a valid hmm database
+
+**Links Parameters**
+
 * ```min_blast_similarity_percentage``` (int): Min nucleotide percent similarity (blast percent identity) for link data (default=90)
 * ```min_blast_similarity_length``` (int): Min nucleotide similarity length (blast align length) for link data (default=300)
 * ```link_transperacny``` (**str**): The transparency of the links in the diagram in range 0 - 1 (0 is transparent) (default='0.60')
 * ```percent_link_overlap_tolerance``` (int): The amount of overlap percentage required to classify two links as similar enough to color them with the same color (default=50)
-* ```inlcude_domains``` (boolean): If True will create protein domain band data, if False will not (default=False)
-	* If set to True, you must also set the ```hmmdb``` parameter to a valid hmm database
-* ```gc_interval_len``` (int): The interval over which gc content is calculated for the histogram (default=100)
 * ```blast_type``` (str): The type of blast to use to create the links (can be 'blastn' OR 'tblastx') (default='blastn')
 * ```keep_blast_data``` (bool): If True will keep the raw blast data, won't if False (default=False)
+
+
 
 
 ### ```make_diagram()```
@@ -92,8 +145,8 @@ make_diagram(data_dir, ncol=2)
 * ```data_dir``` (str): File path to a directory containing the following files created by ```create_circos_data()```:
 	* ORF.txt  
 	* ORF_reverse.txt  
-	* Links.txt  
-	* Karyotype.txt  
+	* links.txt  
+	* karyotype.txt  
 	* circos.conf  
 
 * i.e. it is the path to the ```circos_diagram_input_data``` directory created within the directory created by ```create_circos_data()```
@@ -103,17 +156,54 @@ make_diagram(data_dir, ncol=2)
 
 * ```ncol``` (int): Number of columns in the protein domain legend if applicable (default=2)
 
+
+# Adding a Custom Histogram
+
+
+If you want to add a layer with custom data you can do that by setting the ```custom_histogram``` paramater to ```True```.  You will also need to provide a txt data file through the ```custom_histogram_file``` paramater.
+ 
+The histogram data is repersented in a txt file with every line repersenting a bar in a histogram for a specific fosmid at a specific site on the fosmid.  It should be in the following format:  
+
+```
+<fasta_header> <start> <end> <value> [options]
+```
+ 
+* Fast headers are used to idenitfy which fosmid the histogram data is for
+* Can just leave the '[options]' empty - see the circos website if you want to use any of these options
+
+For example, if my diagram consisted of 2 fosmids named fosmid1 and fosmid2 of length 10 base pairs (for example...), then I could provide the following data in the txt file for a custom histogram:
+
+```
+fosmid1 1 3 25  
+fosmid1 3 9 50  
+fosmid1 9 10 75  
+fosmid2 1 3 25  
+fosmid3 3 5 50  
+fosmid4 5 10 75  
+```
+
+Notes
+
+* The scale of the histogram is from 0 (no bar) to 100 (full bar) so normalize your data to this or see section (TODO###) to edit the conf file to change the range
+* The interval lengths don't have to be the same
+* If a section of the fosmid is not covered by the start/end ranges given or if no data is given for a specific fosmid it assumed to be 0 
+
+
+
+
 # Output Visualization
+
 ![alt text](https://github.com/TyloRoberts/fosvis/blob/master/images/fosvis_sample_image.png?raw=true)
 
 The circos diagram output image has the following main features (depending on the parameters used):
 
-* Outer layer: Represents length/position of fosmid sequences (scale bars show fosmid size in kb)
-* Coloured Bands on Outer Layer: Represent protein domains with each unique domain having an associated color (shown in a separate legend) (will only be shown if ```inlcude_domains=True```)
-* 2 Tile Layers (layers 2 & 3): Represent open reading frames (2nd layer shows forward strand, 3rd layer shows reverse strand)
-* Histogram Layer: GC content (only included if ```gc=True```)
-* Inner Ribbons: The ribbons (links) represent nucleotide/protein homology using blastn or tblastx between fosmids
+* Karyotype layer: Represents length/position of fosmid sequences (scale bars show fosmid size in kb)
+	* Coloured Bands on the karyotype layer represent protein domains with each unique domain having an associated color (shown in a separate legend) (will only be shown if ```inlcude_domains=True```)
+* ORF Layers: Represent positions of open reading frames (outer layer shows forward strand, inner layer shows reverse strand)
+* GC Content Layer: GC content (only included if ```gc=True```)
+* Links: The ribbons (links) represent nucleotide/protein homology using blastn or tblastx between fosmids
 	* Links representing the same (or part of the same) sequence are grouped by color
+* Custom Histogram Layer (not shown): The inner-most layer repersenting the custom data provided in the same format as the GC data
 
 
 # Output Files
@@ -193,8 +283,11 @@ Manual modifications of the data are sometimes necessary to clean up the image. 
 	* To change the fundamental layout of the image (layer size/positions, adding additional layers) you need to edit the circos.conf file
 	* See the circos documentation for more information: <http://circos.ca/documentation/>
 
+
 # Implementation Details
+
 The script uses a variety of tools to create the various data inputs that the circos software can use to create an image.  The main tools are shown in the diagram below and some additional details are provided about notable configurations of those tools.
+
 ![alt text](https://github.com/TyloRoberts/fosvis/blob/master/images/implementation.png?raw=true)
 
 
@@ -216,7 +309,7 @@ The script uses a variety of tools to create the various data inputs that the ci
 
 * For the ORF layer, if more than 3 overlap, then any more are not shown in the image
 * Whether the link pinches in the middle or not is as a result of link position data having the orign\_start > or < the origin\_end and the terminus\_start > or < the terminus\_end
-* The chromosome name used will be the sequence id from the fasta file up to (not including) the first space if there is a space in the fasta sequence id.  Thus, make sure for every sequence every header is unique up to the first space.
+* The chromosome name used will be the sequence id from the fasta file up to (not including) the first space if there is a space in the fasta sequence id.  Thus, make sure for every sequence every header is unique up to the first space or ideally have no spaces in the fasts headers.
 * Circos indexing:
 	* The circos software takes each bp position to be a range
 	* If your karyotype starts at 1 (as in fosvis) the first position would be the range from 1 - 2, the 2nd would be the range from 2 - 3
