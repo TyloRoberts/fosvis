@@ -166,7 +166,7 @@ label_parallel = yes
 
 
 ################################################################
-# Ticks and labels on fosmid karyotype bars
+# Ticks and tick labels on fosmid karyotype bars
 ################################################################
 
 show_ticks = yes
@@ -232,7 +232,7 @@ thickness   = 15
 padding     = 8
 stroke_thickness = 1
 stroke_color   = black
-color = outer_orf_blue_color
+color = outer_orf_fwd_strand_color
 <backgrounds>
 <background>
 color = outer_orf_background_color
@@ -254,7 +254,7 @@ thickness   = 15
 padding     = 8
 stroke_thickness = 1
 stroke_color     = black
-color = inner_orf_red_color
+color = inner_orf_rev_strand_color
 <backgrounds>
 <background>
 color = inner_orf_background_color
@@ -330,7 +330,7 @@ color     = vlgrey
 thickness = 1
 </axis>
 </axes>
-fill_color = gc_histogram_color
+fill_color = custom_hist_color
 </plot>
 
 """
@@ -382,9 +382,10 @@ stroke_thickness = 4
 outer_orf_background_color = 120,120,120,0.30
 inner_orf_background_color = 120,120,120,0.2
 gc_histogram_background_color = 120,120,120,0.1
-outer_orf_blue_color = vdgrey
-inner_orf_red_color = vdgrey
+outer_orf_fwd_strand_color = vdgrey
+inner_orf_rev_strand_color = vdgrey
 gc_histogram_color = vdgrey
+custom_hist_color = vdgrey
 </colors>
 """
     )

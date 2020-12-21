@@ -248,7 +248,7 @@ def make_diagram(data_dir, ncol=2):
     print("Creating circos diagram...")
 
     circos_stdout_and_stderr_log_path = os.path.dirname(data_dir) + '/intermediate_outputs/circos_stdout_and_stderr_log.txt'
-    circos_command = "circos -conf " + data_dir + "/circos.conf -outputdir " + data_dir + " -outputfile circos_diagram.png -noparanoid"
+    circos_command = "circos -conf " + data_dir + "/circos.conf -outputdir " + data_dir + " -outputfile ../circos_diagram.png -noparanoid"
 
     with open(circos_stdout_and_stderr_log_path,"wb") as stdout:
         subprocess.call([str(circos_command)], stdout=stdout, stderr=subprocess.STDOUT, shell=True)

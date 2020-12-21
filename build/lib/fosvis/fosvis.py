@@ -28,7 +28,7 @@ How to use: Script is used through the create_circos_data() and make_diagram() m
 
 ############################### create_circos_data #############################
 
-def create_circos_data(contigs, output_dir, project_title, orfs=True, gc=True, custom_histogram=False, custom_histogram_file='', hmm_db='', e_value=0.01, min_contig_length=10000, min_blast_similarity_percentage=90, min_blast_similarity_length=300, link_transperacny='0.60', percent_link_overlap_tolerance=50, include_domains=False, gc_interval_len=100, blast_type='blastn', keep_blast_data=False):
+def create_circos_data(contigs, output_dir, project_title, orfs=True, gc=True, custom_histogram=False, custom_histogram_file='', hmm_db='', e_value=0.01, min_contig_length=10000, min_blast_similarity_percentage=90, min_blast_similarity_length=300, link_transperacny='0.60', percent_link_overlap_tolerance=50, include_domains=False, gc_interval_len=400, blast_type='blastn', keep_blast_data=False):
     """
     Create the following input files for a circos diagram:
         - ORF.txt
@@ -60,6 +60,16 @@ def create_circos_data(contigs, output_dir, project_title, orfs=True, gc=True, c
     Returns:
         None
     """
+    # Check to make sure a custom histogram data file was provided if using a custom histogram
+    if custom_histogram and (custom_histogram_file == ''):
+        print('You have set the custom_histogram=True but provided no custom_histogram_file paramter.  Please give a file in this paramter and try again.')
+        sys.exit()
+
+    # check to make sure a hmmdb was given if inlcude_domains is set to True
+    if include_domains and (hmm_db == ''):
+        print('You have set paramter inlcude_domains to True but provided no hmm database in the hmm_db paramter.  Please inlcude a hmm database in this paramter if you wish to inlcude protein domains and try again.')
+        sys.exit()
+
     # check if all required programs are in PATH
     if which('circos') is None:
         print("Could not find circos, please install and append to PATH")
@@ -238,7 +248,7 @@ def make_diagram(data_dir, ncol=2):
     print("Creating circos diagram...")
 
     circos_stdout_and_stderr_log_path = os.path.dirname(data_dir) + '/intermediate_outputs/circos_stdout_and_stderr_log.txt'
-    circos_command = "circos -conf " + data_dir + "/circos.conf -outputdir " + data_dir + " -outputfile circos_diagram.png -noparanoid"
+    circos_command = "circos -conf " + data_dir + "/circos.conf -outputdir " + data_dir + " -outputfile ../circos_diagram.png -noparanoid"
 
     with open(circos_stdout_and_stderr_log_path,"wb") as stdout:
         subprocess.call([str(circos_command)], stdout=stdout, stderr=subprocess.STDOUT, shell=True)

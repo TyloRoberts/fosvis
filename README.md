@@ -80,6 +80,8 @@ print("Finished Running...")
 
 Within the specified output directory, there will be a folder created with the same name as the ```proj_name```.  Within this direcotry there will be a directory called ```circos_diagram_input_data``` which will contain your image as a file called ```circos_diagram.png```.
 
+If you wanted to make a manual modification (see 'Manual Image Modifications' section), simply make the modification, comment out the ```fosvis.create_circos_data(...)``` line and re-run the scripts to have your modifications take effect.
+
 # Parameters
 
 ### ```create_circos_data()```
@@ -178,8 +180,8 @@ fosmid1 1 3 25
 fosmid1 3 9 50  
 fosmid1 9 10 75  
 fosmid2 1 3 25  
-fosmid3 3 5 50  
-fosmid4 5 10 75  
+fosmid2 3 5 50  
+fosmid2 5 10 75  
 ```
 
 Notes
@@ -244,42 +246,63 @@ The script outputs the following directories and files after running ```create_c
 
 
 # Manual Image Modifications
-Manual modifications of the data are sometimes necessary to clean up the image.  In order to manually edit the image, simply manually edit the circos input files and re-run ```make_diagram()```. A general outline of how to make all modifications is described first and specifics on common modifications are described after.
+
+Manual modifications can be done to customize some aspects of the output image.
 
 **How to Make Modifications**  
+
+Each modification involves making an edit to one of the circos input files and re-runing ```make_diagram()```:  
+
 1. Open one of the 4 circos input txt files with a text editor  
 2. Make the modification (details of common modifications described below)  
 3. Save the changes to the same file  
-4. Run the ```make_diagram()``` function with the ```circos_diagram_input_data``` directory (containing the modified file)  
+4. Run the ```make_diagram()``` function with the ```circos_diagram_input_data``` directory (containing the modified file) - don't run ```create_circos_data()``` again or it will erase your changes
 5. The ```circos_diagram.png``` file and legends will be overwritten with the changes made to the input files  
+
+Details on specific modifications are described below:
 
 **Details on Common Modifications (What to do in step 2 above)**  
 
 1. Removing irrelevant protein domain annotations
 	* Initially, the protein domain legend is likely filled with irrelevant protein domains that need to be removed
 	* In the karyotype.txt file the protein domain bands are represented by lines that start with ‘band’
-	* In karyotype.txt the second column is the fosmid the band is on, the third is a brief name of the domain and the fourth column is a more verbose name of the protein domain (Note: spaces from database name are replaced with underscores)
+	* In karyotype.txt the second column (of lines that start with band) is the fosmid the band is on, the third is a brief name of the domain and the fourth column is a more verbose name of the protein domain (Note: spaces from database name are replaced with underscores)
 	* For any protein domain that is irrelevant to your diagram, delete the line and when make_diagram() is run again the circos diagram and legend will reflect the changes
 
 2. Removal of links and ORFs
-	* Open the links.txt or ORF.txt file and simply delete the row containing the link or ORF that you want to remove
+	* Open the ```links.txt``` or ```ORF.txt``` file 
+	* Delete the row containing the link or ORF that you want to remove
 
-3. Changing colors of links (same for protein domains)
+3. Changing colors of links
 	* In the links.txt file the color of each link is denoted in the final column after the ‘color=’ tag and is surrounded in brackets
 		* Color is denoted in the format (r,g,b,luminosity)
 	* Modify the rgb/luminosity values for each link that you would like to change the color of
 		* Keep in mind that some links are already grouped so be sure to change all the colors in the group to maintain those groups
 		* If you search the file for the color that is currently entered it will show you all the occurrences of that color and hence all the links that are grouped with that link
-	* Note about protein domains:
-		* Same but in format ‘rgb(r,g,b)’ and have no luminosity
-		* Recurrent domains already have same color so if you change one change all to that color otherwise the legend won’t be accurate
 
-4. Changing Fosmid Labels from 1,2,3 etc.
+4. Changing colors of protein doamins
+	* Lines that start with 'band' repersent protein domains
+	* Do the same process as changing the colors of links except the format for the color of a band is ‘rgb(r,g,b)’ and have no luminosity value
+	* Similar to links, recurrent domains already have the same color so if you change one change all to that color otherwise the legend won’t be accurate
+
+5. Changing Fosmid Labels from 1,2,3 etc.
 	* Open the karyotype.txt file and the chromosomes are represented by lines starting with ‘chr’
 	* The label for the fosmid shown on the diagram is in the fourth column (including the ‘-’ as a column)
 	* Change that value to the desired label and re-run make_diagram()
 
-5. Changing Diagram Layout/Features (not recommended)
+6. Changing color of karyotype bars from grey
+	* If you are not diplaying protein domains, the karyotype bars will be gray by default.  These bars can can be set to any color to repersent things such as fosmid enviornment, library etc.
+	* Open the ```karyotype.txt``` file 
+		* It has an entry for each fosmid e.g. ```chr - fosmids_7233 1 1 43702 rgb(120,120,120,0.4)```
+	* Simply replace the rgb(...) part with an appropriate rgb color in the form rgb(r,g,b,l) where l is luminosity (basically transperancy)
+	
+7. Changing color of custom histogram, gc histogram or ORF bars
+	* Open the ```circos.conf``` file
+	* Scroll to botoom 'Defining custom colors' section
+	* Change what any of the color labels with a color being repersented in the format ```r,g,b,luminosity```
+		* e.g. If I wanted to change the color of the gc histogram to green I would replace the current line ```gc_histogram_color = vdgrey``` to the new line ```gc_histogram_color = 0,250,0,1```
+
+8. Changing Diagram Layout/Features
 	* To change the fundamental layout of the image (layer size/positions, adding additional layers) you need to edit the circos.conf file
 	* See the circos documentation for more information: <http://circos.ca/documentation/>
 
@@ -289,8 +312,6 @@ Manual modifications of the data are sometimes necessary to clean up the image. 
 The script uses a variety of tools to create the various data inputs that the circos software can use to create an image.  The main tools are shown in the diagram below and some additional details are provided about notable configurations of those tools.
 
 ![alt text](https://github.com/TyloRoberts/fosvis/blob/master/images/implementation.png?raw=true)
-
-
 
 **Links**
 
@@ -313,6 +334,16 @@ The script uses a variety of tools to create the various data inputs that the ci
 * Circos indexing:
 	* The circos software takes each bp position to be a range
 	* If your karyotype starts at 1 (as in fosvis) the first position would be the range from 1 - 2, the 2nd would be the range from 2 - 3
+
+
+# Troubleshooting
+
+* If everything works except no png is actually created for the diagram it is likely an error that occured with circos as a result of something to do with the data.  If this were to occur, look in the ```circos_stdout_and_stderr_log.txt``` to get a description of the error.
+	* e.g. The circos histogram maxes out at 25000 data points, thus setting the ```gc_interval_len``` too low with a large amount of fosmids would result in a circos error.
+	* Note: Within ```circos_stdout_and_stderr_log.txt``` lines starting with 'debug' are supposed to be there and summarize the execution
+
+* There are also stdout and stderr files for every software tool used in the subdirectories of the  ```intermediate_outputs``` directory that can give information of any errors
+
 
 
 ## References
