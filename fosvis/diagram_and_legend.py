@@ -451,8 +451,7 @@ def draw_prtn_domain_legend(labels, colors, file_name, ncol):
 
 def karyotype_legend(karyotype_file, output_file):
     """
-    Takes in a list of fosmid names with their corresponding number (e.g. 1 : FosmidA7)
-    and produces a legend.
+    Takes in a karyotype file and produces a corresponding legend.
 
     Args:
         karyotype_file (str): File path to karyotype.txt file containing fosmid information
@@ -479,4 +478,4 @@ def karyotype_legend(karyotype_file, output_file):
     fig  = legend.figure
     fig.canvas.draw()
     bbox  = legend.get_window_extent().transformed(fig.dpi_scale_trans.inverted())
-    fig.savefig(output_file, dpi=400, bbox_inches=bbox)
+    fig.savefig(output_file, dpi=500, bbox_inches=bbox)

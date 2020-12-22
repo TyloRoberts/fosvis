@@ -253,5 +253,8 @@ def make_diagram(data_dir, ncol=2):
     with open(circos_stdout_and_stderr_log_path,"wb") as stdout:
         subprocess.call([str(circos_command)], stdout=stdout, stderr=subprocess.STDOUT, shell=True)
 
-    diagram_and_legend.prtn_domain_legend(data_dir + "/karyotype.txt", data_dir + "/protein_domain_legend.png", ncol)
-    diagram_and_legend.karyotype_legend(data_dir + "/karyotype.txt", data_dir + "/karyotype_legend.png")
+    # only make prtn dom legend if there is stuff in hmmscan dir - i.e. protein domains were run
+    if len(os.listdir(os.path.dirname(data_dir) + '/intermediate_outputs/hmmscan')) != 0:
+        diagram_and_legend.prtn_domain_legend(data_dir + "/karyotype.txt", data_dir + "/../protein_domain_legend.png", ncol)
+
+    diagram_and_legend.karyotype_legend(data_dir + "/karyotype.txt", data_dir + "/../karyotype_legend.png")

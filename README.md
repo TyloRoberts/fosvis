@@ -4,11 +4,11 @@ Contact: tylojroberts@gmail.com
 # FosVis Overview  
 A pip-installable python package designed for visualization of fosmids from functional screens.  The inputs are contigs from an assembly (representing fosmids) and the output is a circos diagram.  
 
-A circos diagram allows relationships between genomic data to be easily visulaized, as well providing an easy way to inlcude many differnt types of data into one diagram through differnt layers within the circle.
+A circos diagram allows relationships between genomic data to be easily visualized, as well providing an easy way to include many different types of data into one diagram through different layers within the circle.
 
-Fosvis allows users to select and create the data they want included in their diagram from a number of predifined data types:
+Fosvis allows users to select and create the data they want included in their diagram from a number of predefined data types:
 
-Fosvis works in a modular fashion allowing users to select the layers they want included in their diagram and the sofwt
+Fosvis works in a modular fashion allowing users to select the layers they want included in their diagram.
 
 The user select what types of data they would like to include in the layers of the diagram and FosVis generates that data and creates a final output image.  Users can select from the following types of data:
 
@@ -16,9 +16,9 @@ The user select what types of data they would like to include in the layers of t
 * Open Reading Frames (ORFs)
 * GC Content
 * Protein Domains
-* Protein or Seqeunce Homology
+* Protein or Sequence Homology
 
-FosVis is also set up to allow manual modifications to the final image through adjustments of the data or circos software configuraiton files.  This way, all of the features of the circos software (<http://circos.ca/>) can be fully exploited.
+FosVis is also set up to allow manual modifications to the final image through adjustments of the data or circos software configuration files.  This way, all of the features of the circos software (<http://circos.ca/>) can be fully exploited.
 
 The package can be used for many applications but is designed for the following fosmid functional screening workflow:
 
@@ -43,17 +43,17 @@ The package can be used for many applications but is designed for the following 
 
 The package has two main methods that control the functionality.  To create the data for the image run ```create_circos_data()```.  Then run ```make_diagram()``` using the created data to output the circos diagram.
 
-The diagram is set up with the following structure of layers from the outside to the center of the circle respectivley:
+The diagram is set up with the following structure of layers from the outside to the center of the circle respectively:
 
-1.  Karyotype (shows length of fosmids - includes protein domain data if selected in the paramaters)
+1.  Karyotype (shows length of fosmids - includes protein domain data if selected in the parameters)
 2.  ORFs
 3.  GC Content
 4.  Custom Histogram (see custom histogram section)
 5.  Homology Links
 
-Using the parmaters described in the Paramters section you can control which of layers 2-4 to include as you see fit as well as many paramters involved in the creation of the data for all layers.
+Using the parameters described in the Parameters section you can control which of layers 2-4 to include as you see fit as well as many parameters involved in the creation of the data for all layers.
 
-The following provides the most basic use of the package, more detailed use can be seen in the Paramaters section:
+The following provides the most basic use of the package, more detailed use can be seen in the Parameters section:
 
 
 1. Ensure all requirements are met
@@ -78,7 +78,7 @@ fosvis.make_diagram(output_dir + "/" + proj_name + "/circos_diagram_input_data")
 print("Finished Running...")
 ```
 
-Within the specified output directory, there will be a folder created with the same name as the ```proj_name```.  Within this direcotry there will be a directory called ```circos_diagram_input_data``` which will contain your image as a file called ```circos_diagram.png```.
+Within the specified output directory, there will be a folder created with the same name as the ```proj_name```.  Within this directory there will be a directory called ```circos_diagram_input_data``` which will contain your image as a file called ```circos_diagram.png```.
 
 If you wanted to make a manual modification (see 'Manual Image Modifications' section), simply make the modification, comment out the ```fosvis.create_circos_data(...)``` line and re-run the scripts to have your modifications take effect.
 
@@ -115,15 +115,15 @@ def create_circos_data(contigs, output_dir, project_title, orfs=True, gc=True, c
 
 **Custom Histogram Layer Parameters**
 
-* ```custom_histogram``` (bool): If True, inlcude custom histogram layer, if False don't (default=False)
-	* If set to True, you must inlcude data for the histogram in the ```custom_histogram_file``` parameter
+* ```custom_histogram``` (bool): If True, include custom histogram layer, if False don't (default=False)
+	* If set to True, you must include data for the histogram in the ```custom_histogram_file``` parameter
 * ```custom_histogram_file``` (str): File path to a custom histogram data txt file (see section ########)
 
 **Protein Domain Parameters**
 
 * ```hmm_db``` (str): File path to a pressed hmm database (default='')
 * ```e_value``` (int): The e-value used for the hmmscan search (default=0.01)
-* ```inlclude_domains``` (boolean): If True will create protein domain band data, if False will not (default=False)
+* ```include_domains``` (boolean): If True will create protein domain band data, if False will not (default=False)
 	* If set to True, you must also set the ```hmmdb``` parameter to a valid hmm database
 
 **Links Parameters**
@@ -163,14 +163,14 @@ make_diagram(data_dir, ncol=2)
 
 
 If you want to add a layer with custom data you can do that by setting the ```custom_histogram``` paramater to ```True```.  You will also need to provide a txt data file through the ```custom_histogram_file``` paramater.
- 
+
 The histogram data is repersented in a txt file with every line repersenting a bar in a histogram for a specific fosmid at a specific site on the fosmid.  It should be in the following format:  
 
 ```
 <fasta_header> <start> <end> <value> [options]
 ```
- 
-* Fast headers are used to idenitfy which fosmid the histogram data is for
+
+* Fast headers are used to identify which fosmid the histogram data is for
 * Can just leave the '[options]' empty - see the circos website if you want to use any of these options
 
 For example, if my diagram consisted of 2 fosmids named fosmid1 and fosmid2 of length 10 base pairs (for example...), then I could provide the following data in the txt file for a custom histogram:
@@ -188,7 +188,7 @@ Notes
 
 * The scale of the histogram is from 0 (no bar) to 100 (full bar) so normalize your data to this or see section (TODO###) to edit the conf file to change the range
 * The interval lengths don't have to be the same
-* If a section of the fosmid is not covered by the start/end ranges given or if no data is given for a specific fosmid it assumed to be 0 
+* If a section of the fosmid is not covered by the start/end ranges given or if no data is given for a specific fosmid it assumed to be 0
 
 
 
@@ -205,7 +205,7 @@ The circos diagram output image has the following main features (depending on th
 * GC Content Layer: GC content (only included if ```gc=True```)
 * Links: The ribbons (links) represent nucleotide/protein homology using blastn or tblastx between fosmids
 	* Links representing the same (or part of the same) sequence are grouped by color
-* Custom Histogram Layer (not shown): The inner-most layer repersenting the custom data provided in the same format as the GC data
+* Custom Histogram Layer (not shown): The inner-most layer representing the custom data provided in the same format as the GC data
 
 
 # Output Files
@@ -251,7 +251,7 @@ Manual modifications can be done to customize some aspects of the output image.
 
 **How to Make Modifications**  
 
-Each modification involves making an edit to one of the circos input files and re-runing ```make_diagram()```:  
+Each modification involves making an edit to one of the circos input files and rerunning ```make_diagram()```:  
 
 1. Open one of the 4 circos input txt files with a text editor  
 2. Make the modification (details of common modifications described below)  
@@ -270,7 +270,7 @@ Details on specific modifications are described below:
 	* For any protein domain that is irrelevant to your diagram, delete the line and when make_diagram() is run again the circos diagram and legend will reflect the changes
 
 2. Removal of links and ORFs
-	* Open the ```links.txt``` or ```ORF.txt``` file 
+	* Open the ```links.txt``` or ```ORF.txt``` file
 	* Delete the row containing the link or ORF that you want to remove
 
 3. Changing colors of links
@@ -291,11 +291,11 @@ Details on specific modifications are described below:
 	* Change that value to the desired label and re-run make_diagram()
 
 6. Changing color of karyotype bars from grey
-	* If you are not diplaying protein domains, the karyotype bars will be gray by default.  These bars can can be set to any color to repersent things such as fosmid enviornment, library etc.
-	* Open the ```karyotype.txt``` file 
+	* If you are not displaying protein domains, the karyotype bars will be gray by default.  These bars can can be set to any color to represent things such as fosmid environment, library etc.
+	* Open the ```karyotype.txt``` file
 		* It has an entry for each fosmid e.g. ```chr - fosmids_7233 1 1 43702 rgb(120,120,120,0.4)```
 	* Simply replace the rgb(...) part with an appropriate rgb color in the form rgb(r,g,b,l) where l is luminosity (basically transperancy)
-	
+
 7. Changing color of custom histogram, gc histogram or ORF bars
 	* Open the ```circos.conf``` file
 	* Scroll to botoom 'Defining custom colors' section
@@ -338,7 +338,7 @@ The script uses a variety of tools to create the various data inputs that the ci
 
 # Troubleshooting
 
-* If everything works except no png is actually created for the diagram it is likely an error that occured with circos as a result of something to do with the data.  If this were to occur, look in the ```circos_stdout_and_stderr_log.txt``` to get a description of the error.
+* If everything works except no png is actually created for the diagram it is likely an error that occurred with circos as a result of something to do with the data.  If this were to occur, look in the ```circos_stdout_and_stderr_log.txt``` to get a description of the error.
 	* e.g. The circos histogram maxes out at 25000 data points, thus setting the ```gc_interval_len``` too low with a large amount of fosmids would result in a circos error.
 	* Note: Within ```circos_stdout_and_stderr_log.txt``` lines starting with 'debug' are supposed to be there and summarize the execution
 
