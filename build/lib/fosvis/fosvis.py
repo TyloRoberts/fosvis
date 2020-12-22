@@ -134,12 +134,7 @@ def create_circos_data(contigs, output_dir, project_title, orfs=True, gc=True, c
         gc_content_df.to_csv(gc_content_file, sep=' ', index=False, header=False)
 
     # Create circos conf file
-    diagram_and_legend.create_circos_conf_file(project_directory + '/circos_diagram_input_data/circos.conf', project_directory + '/circos_diagram_input_data/karyotype.txt', project_directory + '/circos_diagram_input_data/links.txt', orfs, gc, custom_histogram, orf_forward_file=project_directory + '/circos_diagram_input_data/ORF.txt', orf_reverse_file=project_directory + '/circos_diagram_input_data/ORF_reverse.txt', gc_file=project_directory + '/circos_diagram_input_data/gc_content.txt', custom_histogram_file=custom_histogram_file)
-    # if gc:
-    #     diagram_and_legend.create_circos_conf_file(project_directory + '/circos_diagram_input_data/circos.conf', project_directory + '/circos_diagram_input_data/karyotype.txt', project_directory + '/circos_diagram_input_data/links.txt', project_directory + '/circos_diagram_input_data/ORF.txt', project_directory + '/circos_diagram_input_data/ORF_reverse.txt', gc_data=project_directory + '/circos_diagram_input_data/gc_content.txt')
-    # else:
-    #     diagram_and_legend.create_circos_conf_file(project_directory + '/circos_diagram_input_data/circos.conf', project_directory + '/circos_diagram_input_data/karyotype.txt', project_directory + '/circos_diagram_input_data/links.txt', project_directory + '/circos_diagram_input_data/ORF.txt', project_directory + '/circos_diagram_input_data/ORF_reverse.txt')
-
+    diagram_and_legend.create_circos_conf_file(project_directory + '/circos_diagram_input_data/circos.conf', project_directory + '/circos_diagram_input_data/karyotype.txt', project_directory + '/circos_diagram_input_data/links.txt', orfs, gc, custom_histogram, include_domains, orf_forward_file=project_directory + '/circos_diagram_input_data/ORF.txt', orf_reverse_file=project_directory + '/circos_diagram_input_data/ORF_reverse.txt', gc_file=project_directory + '/circos_diagram_input_data/gc_content.txt', custom_histogram_file=custom_histogram_file)
 
 def setup_project_dirs(project_directory, blast_type):
     """
@@ -159,7 +154,7 @@ def setup_project_dirs(project_directory, blast_type):
         os.mkdir(project_directory)
     except Exception as e:
         print(e)
-        print("Was not able to create project directory.")
+        print("Was not able to create project directory - make sure a directory with this name does not already exist.")
         sys.exit()
 
     try:

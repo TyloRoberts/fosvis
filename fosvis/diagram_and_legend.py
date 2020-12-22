@@ -81,7 +81,7 @@ def find_layer_radii(orfs, gc, custom_histogram):
 
 
 
-def create_circos_conf_file(output, karyotype_file, links_file, orfs, gc, custom_histogram, orf_forward_file=None, orf_reverse_file=None, gc_file=None, custom_histogram_file=None):
+def create_circos_conf_file(output, karyotype_file, links_file, orfs, gc, custom_histogram, include_domains, orf_forward_file=None, orf_reverse_file=None, gc_file=None, custom_histogram_file=None):
     """
     Creates the conf file for a circos diagram based on the type and amount of layers.
 
@@ -134,6 +134,7 @@ def create_circos_conf_file(output, karyotype_file, links_file, orfs, gc, custom
 
     f.write(
 """
+#
 ################################################################
 # Ideogram and Karyotype Setup
 ################################################################
@@ -148,7 +149,20 @@ default = 0.01r
 
 # Ideogram position, fill and outline
 radius    = 0.80r
-thickness = 90p
+"""
+    )
+
+    if include_domains:
+        f.write(
+"""thickness = 90p"""
+                )
+    else:
+        f.write(
+"""thickness = 55p"""
+                )
+
+    f.write(
+"""
 fill      = yes
 stroke_color = black
 stroke_thickness = 8p
@@ -185,7 +199,20 @@ size = 20p
 # 5kb bars with no label
 <tick>
 spacing = 5000u
-size = 0.2r
+"""
+    )
+
+    if include_domains:
+        f.write(
+"""size = 0.2r"""
+        )
+    else:
+        f.write(
+"""size = 0.4r"""
+        )
+
+    f.write(
+"""
 show_label = no
 label_size = 1r
 thickness = 4p
@@ -195,7 +222,20 @@ color = black
 # 10kb bars with labels
 <tick>
 spacing = 10000u
-size = 0.3r
+"""
+    )
+
+    if include_domains:
+        f.write(
+"""size = 0.3r"""
+        )
+    else:
+        f.write(
+"""size = 0.5r"""
+        )
+
+    f.write(
+"""
 show_label = yes
 label_size = 1r
 label_offset = 0.5r

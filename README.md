@@ -154,9 +154,9 @@ make_diagram(data_dir, ncol=2)
 # Adding a Custom Histogram
 
 
-If you want to add a layer with custom data you can do that by setting the ```custom_histogram``` paramater to ```True```.  You will also need to provide a txt data file through the ```custom_histogram_file``` paramater.
+If you want to add a layer with custom data you can do that by setting the ```custom_histogram``` parameter to ```True```.  You will also need to provide a txt data file through the ```custom_histogram_file``` parameter
 
-The histogram data is repersented in a txt file with every line repersenting a bar in a histogram for a specific fosmid for a specific range of base pairs on the fosmid.  It should be in the following format:  
+The histogram data is represented in a txt file with every line representing a bar in a histogram for a specific fosmid for a specific range of base pairs on the fosmid.  It should be in the following format:  
 
 ```
 <fasta_header> <start> <end> <value> [options]
@@ -197,7 +197,7 @@ The circos diagram output image has the following main features (depending on th
 * GC Content Layer: GC content (only included if ```gc=True```)
 * Links: The ribbons (links) represent nucleotide/protein homology using blastn or tblastx between fosmids
 	* Links representing the same (or part of the same) sequence are grouped by color
-* Custom Histogram Layer (not shown): The inner-most layer representing the custom data provided in the same format as the GC data
+* Custom Histogram Layer (not shown): The innermost layer representing the custom data provided in the same format as the GC data
 
 
 # Output Files
@@ -274,8 +274,8 @@ Each modification involves making an edit to one of the circos input files and r
 		* Keep in mind that some links are already grouped so be sure to change all the colors in the group to maintain those groups
 		* If you search the file for the color that is currently entered it will show you all the occurrences of that color and hence all the links that are grouped with that link
 
-4. Changing colors of protein doamins
-	* Lines that start with 'band' repersent protein domains
+4. Changing colors of protein domains
+	* Lines that start with 'band' represent protein domains
 	* Do the same process as changing the colors of links except the format for the color of a band is ‘rgb(r,g,b)’ and have no luminosity value
 	* Similar to links, recurrent domains already have the same color so if you change one change all to that color otherwise the legend won’t be accurate
 
@@ -288,12 +288,12 @@ Each modification involves making an edit to one of the circos input files and r
 	* If you are not displaying protein domains, the karyotype bars will be grey by default.  These bars can can be set to any color to represent things such as fosmid environment, library etc.
 	* Open the ```karyotype.txt``` file
 		* It has an entry for each fosmid e.g. ```chr - fosmids_7233 1 1 43702 rgb(120,120,120,0.4)```
-	* Simply replace the rgb(...) part with an appropriate rgb color in the form rgb(r,g,b,l) where l is luminosity (basically transperancy)
+	* Simply replace the rgb(...) part with an appropriate rgb color in the form rgb(r,g,b,l) where l is luminosity (basically transparency)
 
 7. Changing color of custom histogram, gc histogram or ORF bars
 	* Open the ```circos.conf``` file
-	* Scroll to botoom 'Defining custom colors' section
-	* Change any of the color labels with a color being repersented in the format ```r,g,b,luminosity```
+	* Scroll to bottom 'Defining custom colors' section
+	* Change any of the color labels with a color being represented in the format ```r,g,b,luminosity```
 		* e.g. If I wanted to change the color of the gc histogram to green I would replace the current line ```gc_histogram_color = vdgrey``` to the new line ```gc_histogram_color = 0,250,0,1```
 
 8. Changing Diagram Layout/Features
