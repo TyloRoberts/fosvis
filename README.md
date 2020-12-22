@@ -23,7 +23,7 @@ The package can be used for many applications but is designed for the following 
 # Requirements
 * Python3 (must be run with python3)
 * Pip-installable packages: BioPython, Pandas, Numpy, Matplotlib, seaborn, tqdm
-* External Software (all need to be appended to PATH)
+* External Software (all need to be appended to PATH - newer versions will also likely work)
 	* circos (v0.69-8)
 	* prodigal (v2.6.3)
 	* blastn (v2.9.0)
@@ -74,7 +74,7 @@ fosvis.make_diagram(output_dir + "/" + proj_name + "/circos_diagram_input_data")
 print("Finished Running...")
 ```
 
-Within the specified output directory, there will be a folder created with the same name as the ```proj_name```.  Within this directory there will be a directory called ```circos_diagram_input_data``` which will contain your image as a file called ```circos_diagram.png```.
+Within the specified output directory, there will be a folder created with the same name as the ```proj_name```.  Within this directory, the visualization will be in a file called ```circos_diagram.png```
 
 If you wanted to make a manual modification (see 'Manual Image Modifications' section), simply make the modification, comment out the ```fosvis.create_circos_data(...)``` line and re-run the scripts to have your modifications take effect.
 
@@ -83,8 +83,10 @@ If you wanted to make a manual modification (see 'Manual Image Modifications' se
 ### ```create_circos_data()```
 
 ```
-def create_circos_data(contigs, output_dir, project_title, orfs=True, gc=True, custom_histogram=False, custom_histogram_file='', hmm_db='', e_value=0.01, min_contig_length=10000, min_blast_similarity_percentage=90, min_blast_similarity_length=300, link_transperacny='0.60',
- percent_link_overlap_tolerance=50, include_domains=False, gc_interval_len=100, blast_type='blastn', keep_blast_data=False)
+def create_circos_data(contigs, output_dir, project_title, orfs=True, gc=True, custom_histogram=False,
+custom_histogram_file='', hmm_db='', e_value=0.01, min_contig_length=10000, min_blast_similarity_percentage=90,
+min_blast_similarity_length=300, link_transperacny='0.60', percent_link_overlap_tolerance=50,
+include_domains=False, gc_interval_len=400, blast_type='blastn', keep_blast_data=False)
 ```
 
 **Required Parameters**
@@ -106,14 +108,14 @@ def create_circos_data(contigs, output_dir, project_title, orfs=True, gc=True, c
 **GC Content Layer Parameters**
 
 * ```gc``` (bool): If True include GC layer, if False don't (default=True)
-* ```gc_interval_len``` (int): The interval over which gc content is calculated for the histogram (default=100)
+* ```gc_interval_len``` (int): The interval over which gc content is calculated for the histogram (default=400)
 
 
 **Custom Histogram Layer Parameters**
 
 * ```custom_histogram``` (bool): If True, include custom histogram layer, if False don't (default=False)
 	* If set to True, you must include data for the histogram in the ```custom_histogram_file``` parameter
-* ```custom_histogram_file``` (str): File path to a custom histogram data txt file (see section ########)
+* ```custom_histogram_file``` (str): File path to a custom histogram data txt file (see 'Adding a Custom Histogram' section) (default='')
 
 **Protein Domain Parameters**
 
@@ -140,14 +142,8 @@ make_diagram(data_dir, ncol=2)
 ```
 **Required Parameters**
 
-* ```data_dir``` (str): File path to a directory containing the following files created by ```create_circos_data()```:
-	* ORF.txt  
-	* ORF_reverse.txt  
-	* links.txt  
-	* karyotype.txt  
-	* circos.conf  
-
-* i.e. it is the path to the ```circos_diagram_input_data``` directory created within the directory created by ```create_circos_data()```
+* ```data_dir``` (str): File path to a directory containing the files created by ```create_circos_data()```
+	* i.e. The path to the ```circos_diagram_input_data``` directory created within the directory created by ```create_circos_data()```
 
 
 **Parameters with Default Values**
@@ -169,7 +165,7 @@ The histogram data is repersented in a txt file with every line repersenting a b
 * Fast headers are the fast headers used in the provided contigs files.  They are used to identify which fosmid the histogram data is for
 * Can leave the '[options]' empty - see the circos website if you want to use any of these options
 
-For example, if my diagram consisted of 2 fosmids named fosmid1 and fosmid2 of length 10 base pairs (for example), then I could provide the following data in the txt file for a custom histogram:
+For example, if my diagram consisted of 2 fosmids named fosmid1 and fosmid2, both of length 10 base pairs (for example), then I could provide the following data in the txt file for a custom histogram:
 
 ```
 fosmid1 1 3 25  
@@ -205,7 +201,7 @@ The circos diagram output image has the following main features (depending on th
 
 
 # Output Files
-The script outputs the following directories and files after running ```create_circos_data()``` and ```make_diagram()```:
+The script outputs the following directories and files after running ```create_circos_data()``` and ```make_diagram()```.  Some files may be missing if that type of data was not specified to be used in the diagram.
 
 **Main Project Directory**
 
@@ -221,7 +217,6 @@ The script outputs the following directories and files after running ```create_c
 
 **```intermediate_ouputs/hmmscan``` Directory**
 
-* Empty unless ```include_domains=True```
 * ```<project_title>_tblout.txt```  - hmmscan tbl format output file
 * ```<project_title>_out.txt``` - hmmscan full format output file
 * ```<project_title>_domtblout.txt``` - hmmscan domtbl format output file
@@ -242,6 +237,7 @@ The script outputs the following directories and files after running ```create_c
 * ```links.txt``` - Circos sequence similarity link data
 * ```karyotype.txt``` - Circos outer layer input data
 * ```circos.conf``` - Configuration file for circos software
+* ```gc_content.txt``` - circos GC content histogram data
 
 
 
@@ -253,7 +249,7 @@ Manual modifications can be done to customize some aspects of the output image.
 
 Each modification involves making an edit to one of the circos input files and rerunning ```make_diagram()```:  
 
-1. Open one of the 4 circos input txt files with a text editor  
+1. Open one of the circos input txt files with a text editor  
 2. Make the modification (details of common modifications described below)  
 3. Save the changes to the same file  
 4. Run the ```make_diagram()``` function with the ```circos_diagram_input_data``` directory (containing the modified file) - don't run ```create_circos_data()``` again or it will erase your changes
@@ -262,7 +258,7 @@ Each modification involves making an edit to one of the circos input files and r
 **Details on Common Modifications (What to do in step 2 above)**  
 
 1. Removing irrelevant protein domain annotations
-	* Initially, the protein domain legend is likely filled with irrelevant protein domains that need to be removed
+	* Initially, the protein domain legend/diagram is likely filled with irrelevant protein domains that need to be removed
 	* In the karyotype.txt file the protein domain bands are represented by lines that start with ‘band’
 	* In karyotype.txt the second column (of lines that start with band) is the fosmid the band is on, the third is a brief name of the domain and the fourth column is a more verbose name of the protein domain (Note: spaces from database name are replaced with underscores)
 	* For any protein domain that is irrelevant to your diagram, delete the line and when make_diagram() is run again the circos diagram and legend will reflect the changes
@@ -289,7 +285,7 @@ Each modification involves making an edit to one of the circos input files and r
 	* Change that value to the desired label and re-run make_diagram()
 
 6. Changing color of karyotype bars from grey
-	* If you are not displaying protein domains, the karyotype bars will be gray by default.  These bars can can be set to any color to represent things such as fosmid environment, library etc.
+	* If you are not displaying protein domains, the karyotype bars will be grey by default.  These bars can can be set to any color to represent things such as fosmid environment, library etc.
 	* Open the ```karyotype.txt``` file
 		* It has an entry for each fosmid e.g. ```chr - fosmids_7233 1 1 43702 rgb(120,120,120,0.4)```
 	* Simply replace the rgb(...) part with an appropriate rgb color in the form rgb(r,g,b,l) where l is luminosity (basically transperancy)
@@ -297,7 +293,7 @@ Each modification involves making an edit to one of the circos input files and r
 7. Changing color of custom histogram, gc histogram or ORF bars
 	* Open the ```circos.conf``` file
 	* Scroll to botoom 'Defining custom colors' section
-	* Change what any of the color labels with a color being repersented in the format ```r,g,b,luminosity```
+	* Change any of the color labels with a color being repersented in the format ```r,g,b,luminosity```
 		* e.g. If I wanted to change the color of the gc histogram to green I would replace the current line ```gc_histogram_color = vdgrey``` to the new line ```gc_histogram_color = 0,250,0,1```
 
 8. Changing Diagram Layout/Features
@@ -306,8 +302,8 @@ Each modification involves making an edit to one of the circos input files and r
 
 9. Changing custom histogram scale
 	* Open ```circos.conf```
-	* Go to 'Custom Histogram Layer' section
-	* Insert your histogram min/max range into the ```min``` and ```max``` paramters
+	* Go to the 'Custom Histogram Layer' section
+	* Insert your histogram min/max range into the ```min``` and ```max``` variables
 
 
 # Implementation Details
@@ -319,8 +315,8 @@ The script uses a variety of tools to create the various data inputs that the ci
 **Links**
 
 * Every combination of pairs of fosmids are blasted against each other (using blastn or tblastx)
-* The outputs are parsed and only blast alignments are only kept if the sequences have a percent similarity >= the parameter min_blast_similarity_percentage and a length >= the parameter ```min_blast_similarity_length``` given in ```create_circos_data()```
-* A function is then run that looks for sets of links that are potentially representing the same (or some of the same) sequence and groups them by assigning them all with the same color
+* The outputs are parsed and only blast alignments are only kept if the sequences have a percent similarity >= the parameter ```min_blast_similarity_percentage``` and a length >= the parameter ```min_blast_similarity_length``` given in ```create_circos_data()```
+* An algorithm is then run that looks for sets of links that are potentially representing the same (or some of the same) sequence and groups them by assigning them all with the same color
 
 **prodigal**
 
@@ -331,7 +327,7 @@ The script uses a variety of tools to create the various data inputs that the ci
 
 # Small Details Worth Noting
 
-* For the ORF layer, if more than 3 overlap, then any more are not shown in the image
+* For the ORF layer, if more than 3 ORFs overlap, then any more past the first 3 are not shown in the image
 * Whether the link pinches in the middle or not is as a result of link position data having the orign\_start > or < the origin\_end and the terminus\_start > or < the terminus\_end
 * The chromosome name used will be the sequence id from the fasta file up to (not including) the first space if there is a space in the fasta sequence id.  Thus, make sure for every sequence every header is unique up to the first space or ideally have no spaces in the fasts headers.
 * Circos indexing:
@@ -343,9 +339,9 @@ The script uses a variety of tools to create the various data inputs that the ci
 
 * If everything works except no png is actually created for the diagram it is likely an error that occurred with circos as a result of something to do with the data.  If this were to occur, look in the ```circos_stdout_and_stderr_log.txt``` to get a description of the error.
 	* e.g. The circos histogram maxes out at 25000 data points, thus setting the ```gc_interval_len``` too low with a large amount of fosmids would result in a circos error.
-	* Note: Within ```circos_stdout_and_stderr_log.txt``` lines starting with 'debug' are supposed to be there and summarize the execution
+	* Note: Within ```circos_stdout_and_stderr_log.txt``` lines starting with 'debug' are supposed to be there and summarize the normal execution
 
-* There are also stdout and stderr files for every software tool used in the subdirectories of the  ```intermediate_outputs``` directory that can give information of any errors
+* There are also stdout and stderr files for many of the software tools used in the subdirectories of the  ```intermediate_outputs``` directory that can give information of any errors
 
 
 
