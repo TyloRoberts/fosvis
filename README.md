@@ -4,9 +4,9 @@ Contact: tylojroberts@gmail.com
 # FosVis Overview  
 A pip-installable python package designed for visualization of fosmids from functional screens.  The inputs are contigs from an assembly (representing fosmids) and the output is a circos diagram.  
 
-A circos diagram allows relationships between genomic data to be easily visualized, as well providing a way to include many different types of data into one diagram through different layers within the circle.
+A circos diagram allows relationships between genomic data to be easily visualized, as well as providing a way to include many different types of data in one diagram through different layers within the circle.
 
-The user select what types of data they would like to include in the layers of the diagram and FosVis generates that data and creates a final output image.  Users can select from the following types of data:
+The user selects what types of data they would like to include in the layers of the diagram and FosVis generates that data and creates a final output image.  Users can select from the following types of data:
 
 * Custom Data
 * Open Reading Frames (ORFs)
@@ -179,7 +179,7 @@ fosmid2 5 10 75
 Notes
 
 * The interval lengths don't have to be the same
-* If a section of the fosmid is not covered by the start/end ranges given or if no data is given for a specific fosmid it assumed to be 0
+* If a section of the fosmid is not covered by the start/end ranges given or if no data is given for a specific fosmid it is assumed to be 0
 * The scale of the histogram is from 0 (no bar) to 100 (full bar) so normalize your data to this or see modification 9 in the 'Manual Image Modifications' section
 
 
@@ -192,7 +192,7 @@ Notes
 The circos diagram output image has the following main features (depending on the parameters used):
 
 * Karyotype layer: Represents length/position of fosmid sequences (scale bars show fosmid size in kb)
-	* Coloured Bands on the karyotype layer represent protein domains with each unique domain having an associated color (shown in a separate legend) (will only be shown if ```inlcude_domains=True```)
+	* Colored Bands on the karyotype layer represent protein domains with each unique domain having an associated color (shown in a separate legend) (will only be shown if ```inlcude_domains=True```)
 * ORF Layers: Represent positions of open reading frames (outer layer shows forward strand, inner layer shows reverse strand)
 * GC Content Layer: GC content (only included if ```gc=True```)
 * Links: The ribbons (links) represent nucleotide/protein homology using blastn or tblastx between fosmids
@@ -315,8 +315,8 @@ The script uses a variety of tools to create the various data inputs that the ci
 **Links**
 
 * Every combination of pairs of fosmids are blasted against each other (using blastn or tblastx)
-* The outputs are parsed and only blast alignments are only kept if the sequences have a percent similarity >= the parameter ```min_blast_similarity_percentage``` and a length >= the parameter ```min_blast_similarity_length``` given in ```create_circos_data()```
-* An algorithm is then run that looks for sets of links that are potentially representing the same (or some of the same) sequence and groups them by assigning them all with the same color
+* The outputs are parsed and blast alignments are only kept if the sequences have a percent similarity >= the parameter ```min_blast_similarity_percentage``` and a length >= the parameter ```min_blast_similarity_length``` given in ```create_circos_data()```
+* An algorithm is then run that looks for sets of links that are potentially representing the same (or some of the same) sequences and groups them by assigning them all with the same color
 
 **prodigal**
 
@@ -329,7 +329,7 @@ The script uses a variety of tools to create the various data inputs that the ci
 
 * For the ORF layer, if more than 3 ORFs overlap, then any more past the first 3 are not shown in the image
 * Whether the link pinches in the middle or not is as a result of link position data having the orign\_start > or < the origin\_end and the terminus\_start > or < the terminus\_end
-* The chromosome name used will be the sequence id from the fasta file up to (not including) the first space if there is a space in the fasta sequence id.  Thus, make sure for every sequence every header is unique up to the first space or ideally have no spaces in the fasts headers.
+* The chromosome name used will be the sequence ID from the fasta file up to (not including) the first space if there is a space in the fasta sequence ID.  Thus, make sure for every sequence every header is unique up to the first space or ideally have no spaces in the fasts headers.
 * Circos indexing:
 	* The circos software takes each bp position to be a range
 	* If your karyotype starts at 1 (as in fosvis) the first position would be the range from 1 - 2, the 2nd would be the range from 2 - 3
