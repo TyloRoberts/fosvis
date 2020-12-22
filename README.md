@@ -4,11 +4,7 @@ Contact: tylojroberts@gmail.com
 # FosVis Overview  
 A pip-installable python package designed for visualization of fosmids from functional screens.  The inputs are contigs from an assembly (representing fosmids) and the output is a circos diagram.  
 
-A circos diagram allows relationships between genomic data to be easily visualized, as well providing an easy way to include many different types of data into one diagram through different layers within the circle.
-
-Fosvis allows users to select and create the data they want included in their diagram from a number of predefined data types:
-
-Fosvis works in a modular fashion allowing users to select the layers they want included in their diagram.
+A circos diagram allows relationships between genomic data to be easily visualized, as well providing a way to include many different types of data into one diagram through different layers within the circle.
 
 The user select what types of data they would like to include in the layers of the diagram and FosVis generates that data and creates a final output image.  Users can select from the following types of data:
 
@@ -164,16 +160,16 @@ make_diagram(data_dir, ncol=2)
 
 If you want to add a layer with custom data you can do that by setting the ```custom_histogram``` paramater to ```True```.  You will also need to provide a txt data file through the ```custom_histogram_file``` paramater.
 
-The histogram data is repersented in a txt file with every line repersenting a bar in a histogram for a specific fosmid at a specific site on the fosmid.  It should be in the following format:  
+The histogram data is repersented in a txt file with every line repersenting a bar in a histogram for a specific fosmid for a specific range of base pairs on the fosmid.  It should be in the following format:  
 
 ```
 <fasta_header> <start> <end> <value> [options]
 ```
 
-* Fast headers are used to identify which fosmid the histogram data is for
-* Can just leave the '[options]' empty - see the circos website if you want to use any of these options
+* Fast headers are the fast headers used in the provided contigs files.  They are used to identify which fosmid the histogram data is for
+* Can leave the '[options]' empty - see the circos website if you want to use any of these options
 
-For example, if my diagram consisted of 2 fosmids named fosmid1 and fosmid2 of length 10 base pairs (for example...), then I could provide the following data in the txt file for a custom histogram:
+For example, if my diagram consisted of 2 fosmids named fosmid1 and fosmid2 of length 10 base pairs (for example), then I could provide the following data in the txt file for a custom histogram:
 
 ```
 fosmid1 1 3 25  
@@ -186,9 +182,9 @@ fosmid2 5 10 75
 
 Notes
 
-* The scale of the histogram is from 0 (no bar) to 100 (full bar) so normalize your data to this or see section (TODO###) to edit the conf file to change the range
 * The interval lengths don't have to be the same
 * If a section of the fosmid is not covered by the start/end ranges given or if no data is given for a specific fosmid it assumed to be 0
+* The scale of the histogram is from 0 (no bar) to 100 (full bar) so normalize your data to this or see modification 9 in the 'Manual Image Modifications' section
 
 
 
@@ -210,6 +206,13 @@ The circos diagram output image has the following main features (depending on th
 
 # Output Files
 The script outputs the following directories and files after running ```create_circos_data()``` and ```make_diagram()```:
+
+**Main Project Directory**
+
+* ```circos_diagram.svg``` - Circos diagram output (svg format)
+* ```circos_diagram.png``` - Circos diagram output (png format)
+* ```protein_domain_legend.png``` - Legend showing protein domain colors shown on the circos diagram (not made unless ```include_domains=True```)
+* ```karyotype_legend.png``` - Legend for fosmid names represented as 1,2,3 etc. on the diagram
 
 **```intermediate_ouputs/prodigal``` Directory**
 
@@ -238,11 +241,8 @@ The script outputs the following directories and files after running ```create_c
 * ```ORF_reverse.txt``` - Circos open reading frame (reverse strand) input data
 * ```links.txt``` - Circos sequence similarity link data
 * ```karyotype.txt``` - Circos outer layer input data
-* ```protein_domain_legend.png``` - Legend showing protein domain colors shown on the circos diagram (Empty unless ```include_domains=True```)
-* ```karyotype_legend.png``` - Legend for fosmid names represented as 1,2,3 etc. on the diagram
 * ```circos.conf``` - Configuration file for circos software
-* ```circos_diagram.svg``` - Circos diagram output (svg format)
-* ```circos_diagram.png``` - Circos diagram output (png format)
+
 
 
 # Manual Image Modifications
@@ -259,8 +259,6 @@ Each modification involves making an edit to one of the circos input files and r
 4. Run the ```make_diagram()``` function with the ```circos_diagram_input_data``` directory (containing the modified file) - don't run ```create_circos_data()``` again or it will erase your changes
 5. The ```circos_diagram.png``` file and legends will be overwritten with the changes made to the input files  
 
-Details on specific modifications are described below:
-
 **Details on Common Modifications (What to do in step 2 above)**  
 
 1. Removing irrelevant protein domain annotations
@@ -275,7 +273,7 @@ Details on specific modifications are described below:
 
 3. Changing colors of links
 	* In the links.txt file the color of each link is denoted in the final column after the ‘color=’ tag and is surrounded in brackets
-		* Color is denoted in the format (r,g,b,luminosity)
+		* Color is denoted in the format ```(r,g,b,luminosity)```
 	* Modify the rgb/luminosity values for each link that you would like to change the color of
 		* Keep in mind that some links are already grouped so be sure to change all the colors in the group to maintain those groups
 		* If you search the file for the color that is currently entered it will show you all the occurrences of that color and hence all the links that are grouped with that link
@@ -286,7 +284,7 @@ Details on specific modifications are described below:
 	* Similar to links, recurrent domains already have the same color so if you change one change all to that color otherwise the legend won’t be accurate
 
 5. Changing Fosmid Labels from 1,2,3 etc.
-	* Open the karyotype.txt file and the chromosomes are represented by lines starting with ‘chr’
+	* Open the ```karyotype.txt``` file and the chromosomes are represented by lines starting with ‘chr’
 	* The label for the fosmid shown on the diagram is in the fourth column (including the ‘-’ as a column)
 	* Change that value to the desired label and re-run make_diagram()
 
@@ -303,8 +301,13 @@ Details on specific modifications are described below:
 		* e.g. If I wanted to change the color of the gc histogram to green I would replace the current line ```gc_histogram_color = vdgrey``` to the new line ```gc_histogram_color = 0,250,0,1```
 
 8. Changing Diagram Layout/Features
-	* To change the fundamental layout of the image (layer size/positions, adding additional layers) you need to edit the circos.conf file
+	* To change the fundamental layout of the image (layer size/positions, adding additional layers) you need to edit the ```circos.conf``` file
 	* See the circos documentation for more information: <http://circos.ca/documentation/>
+
+9. Changing custom histogram scale
+	* Open ```circos.conf```
+	* Go to 'Custom Histogram Layer' section
+	* Insert your histogram min/max range into the ```min``` and ```max``` paramters
 
 
 # Implementation Details
