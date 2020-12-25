@@ -65,7 +65,7 @@ contigs = '<path_to_contigs_fasta_file>'
 # File path to a directory where the project folder will be created
 output_dir = '<path_to_an_output_directory>'
 
-# A Project Name (output directory will be created with this name)
+# A Project Name (no spaces - output directory will be created with this name)
 proj_name = 'test_project'
 
 print("Running...")
@@ -93,7 +93,7 @@ include_domains=False, gc_interval_len=400, blast_type='blastn', keep_blast_data
 
 * ```contigs``` (str): File path to a FASTA file containing contigs
 * ```output_dir``` (str): File path to a directory where the project folder will be created
-* ```project_title``` (str): Name of the project directory that is created in the ```ouput_dir``` (and used for some file prefixes)
+* ```project_title``` (str): Name of the project directory that is created in the ```ouput_dir``` (and used for some file prefixes), don't use any spaces
 
 
 **Quality Control Parameters**
@@ -304,6 +304,8 @@ Each modification involves making an edit to one of the circos input files and r
 	* Open ```circos.conf```
 	* Go to the 'Custom Histogram Layer' section
 	* Insert your histogram min/max range into the ```min``` and ```max``` variables
+
+A large number of other features, layers and attributes can be added by modifying the ```circos.conf``` file to make full use of the circos software, see the circos website for more information.
 
 
 # Implementation Details
