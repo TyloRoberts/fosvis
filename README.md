@@ -62,7 +62,7 @@ from fosvis import fosvis
 # fasta contigs file (all contigs in one file)
 contigs = '<path_to_contigs_fasta_file>'
 
-# File path to a directory where the project folder will be created
+# File path to a directory where the project folder will be created (no slash at end of path)
 output_dir = '<path_to_an_output_directory>'
 
 # A Project Name (no spaces - output directory will be created with this name)
@@ -92,7 +92,7 @@ include_domains=False, gc_interval_len=400, blast_type='blastn', keep_blast_data
 **Required Parameters**
 
 * ```contigs``` (str): File path to a FASTA file containing contigs
-* ```output_dir``` (str): File path to a directory where the project folder will be created
+* ```output_dir``` (str): File path to a directory where the project folder will be created (note: don't use a slash at end of path)
 * ```project_title``` (str): Name of the project directory that is created in the ```ouput_dir``` (and used for some file prefixes), don't use any spaces
 
 
